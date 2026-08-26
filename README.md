@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 🌱 Agri-Direct
 
 Connecting Farmers Directly to Buyers
@@ -171,3 +172,6 @@ Together, we developed Agri-Direct with the vision of empowering farmers through
 Agri-Direct is more than a marketplace.
 
 It is an effort to create a transparent ecosystem where farmers receive better opportunities, buyers gain direct access to quality products, and technology supports sustainable agricultural growth.
+=======
+# Agri-_Direct
+>>>>>>> afcff865f1a42d9e233837f16d14f9b47d03945b
