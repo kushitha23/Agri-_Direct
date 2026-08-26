@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+    <title>Order Tracking | Agri-Direct</title>
+
+    <!-- GOOGLE FONT -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            background:#f4f7fb;
+            padding:40px 8%;
+        }
+
+        a{
+            text-decoration:none;
+            color:inherit;
+        }
+
+        /* HEADER */
+
+        .tracking-header{
+
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:40px;
+        }
+
+        .tracking-header h1{
+
+            font-size:42px;
+            color:#0f172a;
+        }
+
+        .home-btn{
+
+            padding:14px 24px;
+            border:none;
+            border-radius:14px;
+            background:#22c55e;
+            color:white;
+            font-size:15px;
+            font-weight:700;
+            cursor:pointer;
+        }
+
+        /* LAYOUT */
+
+        .tracking-layout{
+
+            display:grid;
+            grid-template-columns:1.5fr 1fr;
+            gap:30px;
+        }
+
+        /* TRACKING BOX */
+
+        .tracking-box{
+
+            background:white;
+            padding:35px;
+            border-radius:28px;
+            box-shadow:0 6px 18px rgba(0,0,0,0.05);
+        }
+
+        .tracking-box h2{
+
+            margin-bottom:35px;
+            color:#0f172a;
+            font-size:32px;
+        }
+
+        /* TRACK STEPS */
+
+        .track{
+
+            position:relative;
+            margin-left:20px;
+        }
+
+        .track-step{
+
+            position:relative;
+            padding-left:50px;
+            margin-bottom:45px;
+        }
+
+        .track-step:last-child{
+            margin-bottom:0;
+        }
+
+        .track-step::before{
+
+            content:'';
+            position:absolute;
+            left:14px;
+            top:35px;
+            width:4px;
+            height:70px;
+            background:#dbe4ee;
+        }
+
+        .track-step:last-child::before{
+            display:none;
+        }
+
+        .circle{
+
+            position:absolute;
+            left:0;
+            top:0;
+            width:32px;
+            height:32px;
+            border-radius:50%;
+            background:#22c55e;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            color:white;
+            font-size:14px;
+        }
+
+        .pending{
+
+            background:#cbd5e1;
+        }
+
+        .track-step h3{
+
+            font-size:22px;
+            margin-bottom:8px;
+            color:#0f172a;
+        }
+
+        .track-step p{
+
+            color:#64748b;
+            font-size:15px;
+            line-height:28px;
+        }
+
+        /* ORDER DETAILS */
+
+        .details-box{
+
+            background:white;
+            padding:30px;
+            border-radius:28px;
+            box-shadow:0 6px 18px rgba(0,0,0,0.05);
+            height:fit-content;
+        }
+
+        .details-box h2{
+
+            margin-bottom:28px;
+            color:#0f172a;
+            font-size:28px;
+        }
+
+        .detail-row{
+
+            display:flex;
+            justify-content:space-between;
+            margin-bottom:18px;
+            padding-bottom:12px;
+            border-bottom:1px solid #eef2f7;
+            font-size:15px;
+        }
+
+        .detail-row strong{
+
+            color:#0f172a;
+        }
+
+        .detail-row span{
+
+            color:#475569;
+            text-align:right;
+        }
+
+        /* DELIVERY BOX */
+
+        .delivery-box{
+
+            margin-top:30px;
+            background:#22c55e;
+            color:white;
+            padding:24px;
+            border-radius:22px;
+            text-align:center;
+        }
+
+        .delivery-box h3{
+
+            font-size:26px;
+            margin-bottom:10px;
+        }
+
+        .delivery-box p{
+
+            font-size:16px;
+            line-height:28px;
+        }
+
+        /* BUTTONS */
+
+        .button-group{
+
+            margin-top:35px;
+            display:flex;
+            gap:16px;
+            flex-wrap:wrap;
+        }
+
+        .btn{
+
+            padding:15px 24px;
+            border:none;
+            border-radius:16px;
+            font-size:15px;
+            font-weight:700;
+            cursor:pointer;
+        }
+
+        .shop-btn{
+
+            background:#22c55e;
+            color:white;
+        }
+
+        .home2-btn{
+
+            background:#0f172a;
+            color:white;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:900px){
+
+            .tracking-layout{
+
+                grid-template-columns:1fr;
+            }
+
+            .tracking-header{
+
+                flex-direction:column;
+                align-items:flex-start;
+                gap:20px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <div class="tracking-header">
+
+        <h1>Order Tracking 🚚</h1>
+
+        <a href="/index.html">
+
+            <button class="home-btn">
+
+                Back To Home
+
+            </button>
+
+        </a>
+
+    </div>
+
+    <!-- LAYOUT -->
+
+    <div class="tracking-layout">
+
+        <!-- LEFT -->
+
+        <div class="tracking-box">
+
+            <h2>
+Order ID: {{ order.id }}
+<br>
+Status: {{ order.status }}
+<br>
+Product: {{ order.product_name }}
+</h2>
+            <div style="
+background:#dcfce7;
+padding:15px;
+border-radius:12px;
+margin-bottom:25px;
+font-weight:600;
+">
+{% if order.status == "Rejected" %}
+
+<div style="
+background:#fee2e2;
+color:#dc2626;
+padding:20px;
+border-radius:15px;
+font-size:18px;
+font-weight:bold;
+margin-bottom:20px;
+text-align:center;
+">
+
+❌ Order Rejected By Farmer
+
+</div>
+
+{% else %}
+
+<div class="track">
+
+    <!-- STEP 1 -->
+    <div class="track-step">
+        <div class="circle pending">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <h3>Order Confirmed</h3>
+        <p>Your order has been confirmed successfully.</p>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="track-step">
+        <div class="circle pending">
+            <i class="fa-solid fa-box"></i>
+        </div>
+        <h3>Packed</h3>
+        <p>Farmer packed your fresh products carefully.</p>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="track-step">
+        <div class="circle pending">
+            <i class="fa-solid fa-truck"></i>
+        </div>
+        <h3>Shipped</h3>
+        <p>Your order has been shipped to your location.</p>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="track-step">
+        <div class="circle pending">
+            <i class="fa-solid fa-location-dot"></i>
+        </div>
+        <h3>Out For Delivery</h3>
+        <p>Delivery partner will arrive soon.</p>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="track-step">
+        <div class="circle pending">
+            <i class="fa-solid fa-house"></i>
+        </div>
+        <h3>Delivered</h3>
+        <p>Order will be delivered to your doorstep.</p>
+    </div>
+
+</div>
+
+{% endif %}
+
+
+
+</div>
+</div>
+
+<div class="details-box">
+            
+
+      <h2>Order Details</h2>
+
+<div class="detail-row">
+    <strong>Order ID</strong>
+    <span>{{ order.id }}</span>
+</div>
+
+<div class="detail-row">
+    <strong>Product</strong>
+    <span>{{ order.product_name }}</span>
+</div>
+
+<div class="detail-row">
+    <strong>Quantity</strong>
+    <span>{{ order.quantity }}</span>
+</div>
+
+<div class="detail-row">
+    <strong>Amount</strong>
+    <span>₹{{ order.total_price }}</span>
+</div>
+
+<div class="detail-row">
+    <strong>Payment</strong>
+    <span>{{ order.payment_method }}</span>
+</div>
+
+<div class="detail-row">
+    <strong>Status</strong>
+    <span>{{ order.status }}</span>
+</div>
+<div class="delivery-box">
+
+    <h3>🚚 Estimated Delivery</h3>
+
+    <p>
+
+    {% if order.estimated_date %}
+
+        {{ order.estimated_date }}
+
+    {% else %}
+
+        Not Available Yet
+
+    {% endif %}
+
+    </p>
+
+    <p>
+
+    {% if order.estimated_time %}
+
+        {{ order.estimated_time }}
+
+    {% else %}
+
+        Waiting For Farmer
+
+    {% endif %}
+
+    </p>
+
+</div>
+
+            <!-- BUTTONS -->
+
+            <div class="button-group">
+
+                <a href="/products.html">
+
+                    <button class="btn shop-btn">
+
+                        Continue Shopping
+
+                    </button>
+
+                </a>
+
+                <a href="/index.html">
+
+                    <button class="btn home2-btn">
+
+                        Home
+
+                    </button>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SCRIPT -->
+
+    <script>
+
+let status = "{{ order.status }}";
+
+let circles = document.querySelectorAll(".circle");
+
+circles.forEach(circle => {
+    circle.classList.add("pending");
+});
+
+if(status === "Accepted"){
+
+    circles[0].classList.remove("pending");
+
+}
+else if(status === "Shipped"){
+
+    circles[0].classList.remove("pending");
+    circles[1].classList.remove("pending");
+    circles[2].classList.remove("pending");
+
+}
+else if(status === "Delivered" || status === "Completed"){
+
+    circles[0].classList.remove("pending");
+    circles[1].classList.remove("pending");
+    circles[2].classList.remove("pending");
+    circles[3].classList.remove("pending");
+    circles[4].classList.remove("pending");
+
+}
+
+</script>
+
+</body>
+
+</html>

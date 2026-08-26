@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>My Profile | Agri-Direct</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px 20px;
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,0.5),
+        rgba(0,0,0,0.5)
+    ),
+    url("https://images.unsplash.com/photo-1500937386664-56d1dfef3854");
+
+    background-size:cover;
+    background-position:center;
+
+    overflow-y:auto;
+}
+
+.profile-card{
+
+    width:100%;
+    max-width:550px;
+
+    background:rgba(255,255,255,0.15);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,0.2);
+
+    border-radius:30px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,0.35);
+
+    margin:20px 0;
+}
+
+.avatar{
+
+    width:120px;
+    height:120px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #22c55e,
+        #15803d
+    );
+
+    color:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:50px;
+    font-weight:700;
+
+    margin-bottom:20px;
+
+    border:4px solid rgba(255,255,255,0.3);
+}
+
+.profile-card h1{
+
+    color:white;
+
+    margin-bottom:25px;
+
+    font-size:36px;
+}
+
+.info-box{
+
+    background:rgba(255,255,255,0.12);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    padding:16px;
+
+    border-radius:16px;
+
+    margin-bottom:15px;
+
+    text-align:left;
+
+    transition:0.3s;
+}
+
+.info-box:hover{
+
+    transform:translateY(-3px);
+
+    background:rgba(255,255,255,0.18);
+}
+
+.label{
+
+    color:#d1fae5;
+
+    font-size:13px;
+
+    margin-bottom:5px;
+
+    text-transform:uppercase;
+}
+
+.value{
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:600;
+}
+
+.button-group{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    margin-top:25px;
+
+    flex-wrap:wrap;
+}
+
+.btn{
+
+    padding:14px 24px;
+
+    border:none;
+
+    border-radius:14px;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:0.3s;
+}
+
+.home-btn{
+
+    background:#22c55e;
+
+    color:white;
+}
+
+.home-btn:hover{
+
+    background:#15803d;
+
+    transform:scale(1.05);
+}
+
+.logout-btn{
+
+    background:#ef4444;
+
+    color:white;
+}
+
+.logout-btn:hover{
+
+    background:#dc2626;
+
+    transform:scale(1.05);
+}
+
+@media(max-width:600px){
+
+    .profile-card{
+
+        padding:25px;
+    }
+
+    .avatar{
+
+        width:90px;
+        height:90px;
+
+        font-size:40px;
+    }
+
+    .profile-card h1{
+
+        font-size:28px;
+    }
+
+    .value{
+
+        font-size:16px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="profile-card">
+
+    <div class="avatar">
+
+        {{ user.fullname[0] }}
+
+    </div>
+
+    <h1>My Profile</h1>
+
+    <div class="info-box">
+
+        <div class="label">
+            Full Name
+        </div>
+
+        <div class="value">
+            {{ user.fullname }}
+        </div>
+
+    </div>
+
+    <div class="info-box">
+
+        <div class="label">
+            Email Address
+        </div>
+
+        <div class="value">
+            {{ user.email }}
+        </div>
+
+    </div>
+
+    <div class="info-box">
+
+        <div class="label">
+            Phone Number
+        </div>
+
+        <div class="value">
+            {{ user.phone }}
+        </div>
+
+    </div>
+
+    <div class="info-box">
+
+        <div class="label">
+            Account Type
+        </div>
+
+        <div class="value">
+            {{ user.role|title }}
+        </div>
+
+    </div>
+    <div style="margin-top:20px;">
+
+    <a href="/add_address"
+    class="btn home-btn">
+
+        + Add Address
+
+    </a>
+
+</div>{% if addresses %}
+
+<h2 style="
+color:white;
+margin-top:25px;
+margin-bottom:15px;
+text-align:left;
+">
+
+My Addresses
+
+</h2>
+
+{% for address in addresses %}
+
+<div class="info-box">
+
+    <div class="label">
+
+        {{ address.address_name }}
+
+    </div>
+
+    <div class="value"
+    style="
+    font-size:16px;
+    line-height:28px;
+    ">
+
+        {{ address.address_line1 }}
+
+        {% if address.address_line2 %}
+
+        <br>
+
+        {{ address.address_line2 }}
+
+        {% endif %}
+
+        <br>
+
+        {{ address.city }},
+
+        {{ address.state }}
+
+        -
+
+        {{ address.pincode }}
+
+    </div>
+
+    <div style="
+    margin-top:15px;
+
+    display:flex;
+
+    gap:10px;
+    ">
+
+        <a href="/edit_address/{{ address.id }}"
+        class="btn home-btn">
+
+            Edit
+
+        </a>
+
+        <a href="/delete_address/{{ address.id }}"
+
+        class="btn logout-btn"
+
+        onclick="return confirm(
+        'Delete this address?'
+        )">
+
+            Delete
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+{% endif %}
+    <div class="button-group">
+
+        <a href="/index.html" class="btn home-btn">
+
+            Back Home
+
+        </a>
+
+        <a href="/logout" class="btn logout-btn">
+
+            Logout
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

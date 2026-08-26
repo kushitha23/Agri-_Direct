@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Checkout | Agri-Direct</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f4f7fb;
+padding:40px 8%;
+}
+
+.checkout-container{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:30px;
+}
+
+.checkout-form{
+background:white;
+padding:35px;
+border-radius:24px;
+box-shadow:0 6px 18px rgba(0,0,0,0.05);
+}
+
+.checkout-form h1{
+margin-bottom:25px;
+color:#0f172a;
+}
+
+.input-box{
+margin-bottom:20px;
+}
+
+.input-box label{
+display:block;
+margin-bottom:8px;
+font-weight:600;
+color:#334155;
+}
+
+.input-box input,
+.input-box textarea,
+.input-box select{
+width:100%;
+padding:14px;
+border:1px solid #dbe4ee;
+border-radius:12px;
+outline:none;
+font-size:15px;
+}
+
+.place-btn{
+width:100%;
+padding:16px;
+border:none;
+border-radius:14px;
+background:#22c55e;
+color:white;
+font-size:18px;
+font-weight:700;
+cursor:pointer;
+}
+
+.summary{
+background:white;
+padding:30px;
+border-radius:24px;
+height:fit-content;
+box-shadow:0 6px 18px rgba(0,0,0,0.05);
+}
+
+.summary h2{
+margin-bottom:25px;
+}
+
+.summary-row{
+display:flex;
+justify-content:space-between;
+margin-bottom:18px;
+}
+
+.total{
+margin-top:20px;
+padding-top:20px;
+border-top:2px solid #eef2f7;
+display:flex;
+justify-content:space-between;
+font-size:24px;
+font-weight:700;
+}
+
+#upiBox,
+#cardBox{
+display:none;
+}
+
+.qr-box{
+background:#f8fafc;
+padding:20px;
+border-radius:20px;
+text-align:center;
+margin-top:20px;
+}
+
+.qr-box img{
+width:220px;
+height:220px;
+margin-bottom:15px;
+}
+
+@media(max-width:900px){
+.checkout-container{
+grid-template-columns:1fr;
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="checkout-container">
+
+<div class="checkout-form">
+
+<h1>Checkout 🧾</h1>
+
+<form id="checkoutForm">
+
+<div class="input-box">
+<label>Full Name</label>
+<input
+type="text"
+id="name"
+name="name"
+value="{{ address.fullname if address else '' }}"
+required>
+</div>
+
+<div class="input-box">
+<label>Phone Number</label>
+<input
+type="tel"
+id="phone"
+name="phone"
+value="{{ address.phone if address else '' }}"
+required>
+</div>
+
+<div class="input-box">
+
+    <label>Delivery Address</label>
+
+    <select
+    id="address_id"
+    name="address_id"
+    required>
+
+        <option value="">
+
+            Select Address
+
+        </option>
+
+        {% for address in addresses %}
+
+        <option
+        value="{{ address.id }}">
+
+            🏠 {{ address.address_name }}
+
+            (
+
+            {{ address.city }},
+
+            {{ address.state }}
+
+            )
+
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+</div>
+
+
+<div class="input-box">
+<label>Payment Method</label>
+
+<select id="payment" name="payment" onchange="showPaymentFields()" required>
+
+<option value="">Select Payment Method</option>
+<option value="Cash On Delivery">Cash On Delivery</option>
+<option value="ONLINE PAYMENT">ONLINE PAYMENT</option>
+<option value="QR PAYMENT">QR PAYMENT</option><div id="qrBox" style="display:none; text-align:center; margin-top:20px;">
+
+    <h3>Demo QR Payment</h3>
+
+    <img
+    src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=AgriDirectDemo"
+    width="250">
+
+    <br><br>
+
+    <button
+    type="button"
+    onclick="simulateQRPayment()">
+
+        Simulate Successful Payment
+
+    </button>
+
+</div>
+
+
+</select>
+
+</div>
+
+
+
+<input type="hidden" name="product_name" id="product_name">
+<input type="hidden" name="quantity" id="quantity">
+<input type="hidden" name="total_price" id="total_price">
+<input type="hidden" name="payment_method" id="payment_method">
+
+<button type="submit" class="place-btn">
+Place Order
+</button>
+ 
+</form>
+
+</div>
+
+<div class="summary">
+
+<h2>Order Summary</h2>
+
+<div class="summary-row">
+<span>Subtotal</span>
+<span id="subtotal">₹0</span>
+</div>
+
+<div class="summary-row">
+<span>Delivery Fee</span>
+<span>₹50</span>
+</div>
+
+<div class="total">
+<span>Total</span>
+<span id="total">₹0</span>
+</div>
+
+</div>
+
+</div>
+<script>
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let subtotal = 0;
+
+cart.forEach(item => {
+    subtotal += Number(item.price) * Number(item.quantity);
+});
+
+let total = subtotal + 50;
+
+document.getElementById("subtotal").innerText = "₹" + subtotal;
+document.getElementById("total").innerText = "₹" + total;
+
+function showPaymentFields(){
+
+    let payment =
+    document.getElementById("payment").value;
+
+    document.getElementById("qrBox").style.display = "none";
+
+    if(payment === "QR PAYMENT"){
+        document.getElementById("qrBox").style.display = "block";
+    }
+}
+document.getElementById("checkoutForm")
+.addEventListener("submit", async function(event){
+
+    event.preventDefault();
+
+    let payment =
+    document.getElementById("payment").value;
+
+    if(payment === ""){
+        alert("Please select payment method");
+        return;
+    }
+
+    if(cart.length === 0){
+        alert("Cart is empty");
+        return;
+    }
+
+    // CASH ON DELIVERY
+
+    if(payment === "Cash On Delivery"){
+
+        document.getElementById("product_name").value =
+        cart.map(item => item.name).join(", ");
+
+        document.getElementById("quantity").value =
+        cart.reduce((sum,item)=>sum+Number(item.quantity),0);
+
+        document.getElementById("total_price").value =
+        total;
+
+        document.getElementById("payment_method").value =
+        "cod";
+
+        let formData =
+        new FormData(this);
+        formData.append(
+    "cart",
+    JSON.stringify(cart)
+);
+
+        fetch("/save-order",{
+            method:"POST",
+            body:formData
+        })
+        .then(response => response.text())
+        .then(data => {
+
+            localStorage.removeItem("cart");
+
+            alert("Order Placed Successfully 🎉");
+
+            window.location.href =
+            "/my-orders";
+
+        });
+
+        return;
+    }
+
+    // RAZORPAY PAYMENT
+
+   // RAZORPAY PAYMENT
+
+let orderData = new FormData();
+
+orderData.append(
+    "amount",
+    total
+);
+
+    let response =
+    await fetch(
+        "/create-razorpay-order",
+        {
+            method:"POST",
+            body:orderData
+        }
+    );
+
+    let data =
+    await response.json();
+
+    let options = {
+
+        key: data.key,
+
+        amount: total * 100,
+
+        currency: "INR",
+
+        name: "Agri Direct",
+
+        description: "Farm Product Order",
+
+        order_id: data.order_id,
+
+        handler: function(response){
+
+            document.getElementById("product_name").value =
+            cart.map(item => item.name).join(", ");
+
+            document.getElementById("quantity").value =
+            cart.reduce((sum,item)=>sum+Number(item.quantity),0);
+
+            document.getElementById("total_price").value =
+            total;
+
+            document.getElementById("payment_method").value =
+            "razorpay";
+
+           let formData =
+new FormData(
+    document.getElementById("checkoutForm")
+);
+
+formData.append(
+    "cart",
+    JSON.stringify(cart)
+);
+
+            formData.append(
+                "razorpay_payment_id",
+                response.razorpay_payment_id
+            );
+
+            formData.append(
+                "razorpay_order_id",
+                response.razorpay_order_id
+            );
+
+            fetch("/save-order",{
+                method:"POST",
+                body:formData
+            })
+            .then(res => res.text())
+            .then(result => {
+
+                localStorage.removeItem("cart");
+
+                alert("Payment Successful 🎉");
+
+                window.location.href =
+                "/my-orders";
+
+            });
+
+        },
+
+        prefill:{
+
+            name:
+            document.getElementById("name").value,
+
+            contact:
+            document.getElementById("phone").value
+
+        },
+
+        theme:{
+            color:"#22c55e"
+        }
+
+    };
+
+    let rzp =
+    new Razorpay(options);
+
+    rzp.open();
+
+});
+function simulateQRPayment(){
+
+    document.getElementById("payment_method").value =
+    "qr";
+
+    let formData =
+    new FormData(
+        document.getElementById("checkoutForm")
+    );
+
+    formData.append(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    fetch("/save-order",{
+        method:"POST",
+        body:formData
+    })
+    .then(res => res.text())
+    .then(data => {
+
+        localStorage.removeItem("cart");
+
+        alert("QR Payment Successful 🎉");
+
+        window.location.href =
+        "/my-orders";
+
+    });
+
+}
+
+</script>
+
+
+
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+</body>
+</html>

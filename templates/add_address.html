@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Add Address</title>
+
+<style>
+
+body{
+
+    font-family:sans-serif;
+
+    background:#f5f5f5;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:100vh;
+
+}
+
+.card{
+
+    background:white;
+
+    width:450px;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+
+}
+
+input{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-bottom:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+}
+
+button{
+
+    width:100%;
+
+    padding:14px;
+
+    background:#22c55e;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>Add New Address</h2>
+
+<form method="POST">
+
+<input
+type="text"
+name="address_name"
+placeholder="Home / Office / Hostel"
+required>
+
+<input
+type="text"
+name="address_line1"
+placeholder="Address Line 1"
+required>
+
+<input
+type="text"
+name="address_line2"
+placeholder="Address Line 2">
+
+<input
+type="text"
+name="city"
+placeholder="City"
+required>
+
+<input
+type="text"
+name="state"
+placeholder="State"
+required>
+
+<input
+type="text"
+name="pincode"
+placeholder="Pincode"
+required>
+
+<button type="submit">
+
+Save Address
+
+</button>
+
+</form>
+
+</div>
+
+</body>
+
+</html>

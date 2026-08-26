@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Schedule Delivery | Agri-Direct</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(
+        135deg,
+        #22c55e,
+        #16a34a,
+        #0f766e
+    );
+
+    padding:40px;
+}
+
+.box{
+
+    width:600px;
+
+    background:rgba(255,255,255,0.15);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,0.2);
+
+    padding:45px;
+
+    border-radius:30px;
+
+    color:white;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,0.25);
+
+    animation:fadeUp .8s ease;
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.icon{
+
+    font-size:60px;
+    text-align:center;
+    margin-bottom:10px;
+}
+
+h1{
+
+    text-align:center;
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.order-id{
+
+    text-align:center;
+    font-size:18px;
+    margin-bottom:35px;
+    opacity:.9;
+}
+
+label{
+
+    display:block;
+    margin-bottom:10px;
+    font-size:18px;
+    font-weight:600;
+}
+
+input{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:16px;
+
+    margin-bottom:25px;
+
+    font-size:16px;
+
+    background:rgba(255,255,255,0.95);
+
+    color:#0f172a;
+
+    outline:none;
+}
+
+input:focus{
+
+    box-shadow:
+    0 0 0 4px rgba(255,255,255,.25);
+}
+
+button{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #7c3aed,
+        #9333ea
+    );
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 10px 25px rgba(124,58,237,.45);
+}
+
+.info-box{
+
+    background:rgba(255,255,255,0.12);
+
+    padding:18px;
+
+    border-radius:18px;
+
+    margin-bottom:30px;
+
+    text-align:center;
+
+    line-height:28px;
+}
+
+.back-btn{
+
+    margin-top:15px;
+
+    display:block;
+
+    text-align:center;
+
+    color:white;
+
+    text-decoration:none;
+
+    opacity:.9;
+}
+
+.back-btn:hover{
+
+    opacity:1;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+    <div class="icon">
+        🚚
+    </div>
+
+    <h1>
+        Schedule Delivery
+    </h1>
+
+    <div class="order-id">
+        Order #{{ order.id }}
+    </div>
+
+    <div class="info-box">
+
+        Product:
+        <strong>
+            {{ order.product_name }}
+        </strong>
+
+        <br>
+
+        Quantity:
+        <strong>
+            {{ order.quantity }}
+        </strong>
+
+    </div>
+
+    <form method="POST">
+
+        <label>
+            📅 Estimated Delivery Date
+        </label>
+
+        <input
+            type="date"
+            name="estimated_date"
+            required
+        >
+
+        <label>
+            ⏰ Estimated Delivery Time
+        </label>
+
+        <input
+            type="text"
+            name="estimated_time"
+            placeholder="11 AM - 1 PM"
+            required
+        >
+
+        <button type="submit">
+
+            Save & Ship Order
+
+        </button>
+
+    </form>
+
+    <a href="/farmer-orders.html" class="back-btn">
+
+        ← Back to Farmer Orders
+
+    </a>
+
+</div>
+
+</body>
+
+</html>
+

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Global Marketplace</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f4f7fb;
+padding:40px;
+}
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.header h1{
+font-size:40px;
+color:#15803d;
+}
+
+.back-btn{
+background:#15803d;
+color:white;
+border:none;
+padding:12px 22px;
+border-radius:10px;
+cursor:pointer;
+font-weight:600;
+}
+
+.market-box{
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+.market-info{
+background:#ecfdf5;
+padding:20px;
+border-radius:15px;
+margin-bottom:25px;
+color:#166534;
+font-weight:500;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th{
+background:#15803d;
+color:white;
+padding:18px;
+text-align:left;
+}
+
+td{
+padding:18px;
+border-bottom:1px solid #e5e7eb;
+}
+
+tr:hover{
+background:#f8fafc;
+}
+
+.price{
+font-size:18px;
+font-weight:700;
+color:#15803d;
+}
+
+.trend{
+padding:8px 14px;
+border-radius:20px;
+font-weight:600;
+display:inline-block;
+}
+
+.high{
+background:#fee2e2;
+color:#b91c1c;
+}
+
+.rising{
+background:#dbeafe;
+color:#1d4ed8;
+}
+
+.falling{
+background:#fef3c7;
+color:#92400e;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<h1>🇮🇳 Indian Market Prices</h1>
+
+<a href="/farmer-dashboard.html">
+
+<button class="back-btn">
+
+Back Dashboard
+
+</button>
+
+</a>
+
+</div>
+
+<div class="market-box">
+
+<div class="market-info">
+
+📊 Indian market prices are collected from Indian agricultural markets..
+
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Product</th>
+
+<th>Category</th>
+
+<th>Indian Market Price</th>
+
+<th>Market Trend</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for product in products %}
+
+<tr>
+
+<td>{{ product.name }}</td>
+
+<td>{{ product.category }}</td>
+
+<td class="price">
+
+₹{{ product.market_price }}
+
+</td>
+
+<td>
+
+{% if loop.index % 3 == 0 %}
+
+<span class="trend high">
+
+🔥 High Demand
+
+</span>
+
+{% elif loop.index % 3 == 1 %}
+
+<span class="trend rising">
+
+📈 Rising
+
+</span>
+
+{% else %}
+
+<span class="trend falling">
+
+📉 Falling
+
+</span>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</body>
+
+</html>

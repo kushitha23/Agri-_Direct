@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Agri-Direct</title>
+    <link rel="icon"
+type="image/png"
+href="https://cdn-icons-png.flaticon.com/512/2909/2909768.png">
+
+    <!-- GOOGLE FONT -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Sora',sans-serif;
+        }
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+        body{
+            background:#f5f7f5;
+            overflow-x:hidden;
+            color:#081224;
+        }
+
+        /* NAVBAR */
+
+        nav{
+
+            width:100%;
+
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+
+            padding:18px 8%;
+
+            background:white;
+
+            position:fixed;
+
+            top:0;
+
+            z-index:1000;
+
+            box-shadow:0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo{
+
+            display:flex;
+            align-items:center;
+            gap:10px;
+
+            font-size:28px;
+            font-weight:800;
+
+            color:#06a635;
+        }
+
+        nav ul{
+
+            display:flex;
+            gap:35px;
+
+            list-style:none;
+        }
+
+        nav ul li a{
+
+            text-decoration:none;
+
+            color:#334155;
+
+            font-size:15px;
+
+            font-weight:500;
+        }
+
+        .nav-buttons{
+
+            display:flex;
+            gap:14px;
+        }
+
+        .login-btn{
+
+    padding:12px 24px;
+
+    border:2px solid #06a635;
+
+    border-radius:12px;
+
+    background:white;
+
+    color:#06a635;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}.login-btn:hover{
+
+    background:#06a635;
+
+    color:white;
+}
+
+        .register-btn{
+
+            padding:12px 24px;
+
+            border:none;
+
+            border-radius:12px;
+
+            background:#06a635;
+
+            color:white;
+
+            font-size:15px;
+
+            font-weight:600;
+
+            cursor:pointer;
+        }
+
+        /* HERO */
+
+        .hero{
+
+            height:100vh;
+
+            background:
+            linear-gradient(rgba(6,166,53,0.65),
+            rgba(6,166,53,0.65)),
+
+            url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854');
+
+            background-size:cover;
+            background-position:center;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            text-align:center;
+
+            padding:20px;
+        }
+
+        .hero-content h1{
+
+            color:white;
+
+            font-size:64px;
+
+            line-height:78px;
+
+            font-weight:800;
+
+            margin-bottom:22px;
+        }
+
+        .hero-content p{
+
+            color:white;
+
+            font-size:20px;
+
+            line-height:34px;
+
+            margin-bottom:35px;
+        }
+
+        .hero-buttons{
+
+            display:flex;
+            justify-content:center;
+            gap:18px;
+
+            flex-wrap:wrap;
+        }
+
+        .browse-btn{
+
+            padding:16px 34px;
+
+            border:none;
+
+            border-radius:14px;
+
+            background:white;
+
+            color:#06a635;
+
+            font-size:17px;
+
+            font-weight:600;
+
+            cursor:pointer;
+        }
+
+        .farmer-btn{
+
+            padding:16px 34px;
+
+            border:2px solid white;
+
+            border-radius:14px;
+
+            background:transparent;
+
+            color:white;
+
+            font-size:17px;
+
+            font-weight:600;
+
+            cursor:pointer;
+        }
+
+        /* PRODUCTS */
+
+       /* PRODUCTS SECTION */
+
+.products-section{
+
+    padding:100px 8%;
+
+    background:#f5f5f5;
+}
+
+.products-header{
+
+    text-align:center;
+
+    margin-bottom:60px;
+}
+
+.products-header h1{
+
+    font-size:42px;
+
+    font-weight:800;
+
+    color:#081224;
+
+    margin-bottom:15px;
+}
+
+.products-header p{
+
+    font-size:18px;
+
+    color:#64748b;
+}
+
+.products-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:35px;
+}
+
+.product-card{
+
+    background:white;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    box-shadow:0 6px 20px rgba(0,0,0,0.08);
+
+    transition:0.3s;
+}
+
+.product-card:hover{
+
+    transform:translateY(-8px);
+}
+
+.product-card img{
+
+    width:100%;
+
+    height:260px;
+
+    object-fit:cover;
+}
+
+.product-content{
+
+    padding:28px;
+}
+
+.category{
+
+    color:#06a635;
+
+    font-size:15px;
+
+    font-weight:600;
+}
+
+.product-content h2{
+
+    font-size:22px;
+
+    margin:18px 0 14px;
+
+    color:#081224;
+}
+
+.product-content p{
+
+    color:#64748b;
+
+    font-size:16px;
+
+    line-height:28px;
+
+    margin-bottom:25px;
+}
+
+.product-bottom{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.price{
+
+    font-size:24px;
+
+    font-weight:800;
+
+    color:#06a635;
+}
+
+.price span{
+
+    font-size:16px;
+
+    color:#64748b;
+
+    font-weight:500;
+}
+
+.rating{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#081224;
+}
+
+.products-btn{
+
+    text-align:center;
+
+    margin-top:55px;
+}
+
+.products-btn button{
+
+    padding:18px 36px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#06a635;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.products-btn button:hover{
+
+    background:#04862a;
+}
+
+        /* FARMERS */
+
+        .farmers{
+
+            padding:100px 8%;
+
+            display:grid;
+
+            grid-template-columns:1fr 1fr;
+
+            gap:50px;
+
+            align-items:center;
+
+            background:white;
+        }
+
+        .farmers-text h1{
+
+            font-size:42px;
+
+            line-height:54px;
+
+            font-weight:800;
+
+            margin-bottom:20px;
+        }
+
+        .farmers-text p{
+
+            color:#64748b;
+
+            font-size:18px;
+
+            line-height:30px;
+
+            margin-bottom:30px;
+        }
+
+        .farmers-text ul{
+
+            list-style:none;
+        }
+
+        .farmers-text ul li{
+
+            margin-bottom:18px;
+
+            font-size:17px;
+
+            color:#334155;
+        }
+
+        .farmers-text ul li i{
+
+            color:#06a635;
+
+            margin-right:10px;
+        }
+
+        .farmers-text button{
+
+            margin-top:25px;
+
+            padding:16px 30px;
+
+            border:none;
+
+            border-radius:12px;
+
+            background:#06a635;
+
+            color:white;
+
+            font-size:16px;
+
+            font-weight:600;
+
+            cursor:pointer;
+        }
+
+        .farmers img{
+
+            width:100%;
+
+            border-radius:24px;
+        }
+
+        /* BUYERS */
+
+        .buyers{
+
+            padding:100px 8%;
+
+            display:grid;
+
+            grid-template-columns:1fr 1fr;
+
+            gap:50px;
+
+            align-items:center;
+
+            background:#eaf7eb;
+        }
+
+        .buyers img{
+
+            width:100%;
+
+            border-radius:24px;
+        }
+
+        .buyers-content h1{
+
+            font-size:42px;
+
+            line-height:54px;
+
+            font-weight:800;
+
+            margin-bottom:18px;
+        }
+
+        .buyers-content p{
+
+            color:#64748b;
+
+            font-size:18px;
+
+            line-height:30px;
+
+            margin-bottom:30px;
+        }
+
+        .buyer-grid{
+
+            display:grid;
+
+            grid-template-columns:1fr 1fr;
+
+            gap:18px;
+        }
+
+        .buyer-card{
+
+            background:white;
+
+            padding:25px;
+
+            border-radius:20px;
+
+            box-shadow:0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .buyer-card i{
+
+            font-size:36px;
+
+            color:#06a635;
+
+            margin-bottom:15px;
+        }
+
+        .buyer-card h2{
+
+            font-size:22px;
+
+            margin-bottom:10px;
+        }
+
+        .buyer-card p{
+
+            font-size:15px;
+        }
+
+        .shop-btn{
+
+            margin-top:30px;
+
+            padding:16px 32px;
+
+            border:none;
+
+            border-radius:12px;
+
+            background:#06a635;
+
+            color:white;
+
+            font-size:16px;
+
+            font-weight:600;
+
+            cursor:pointer;
+        }
+
+        /* CTA */
+
+        .cta-section{
+
+            background:#06a635;
+
+            padding:90px 8%;
+
+            text-align:center;
+
+            color:white;
+        }
+
+        .cta-section h1{
+
+            font-size:48px;
+
+            margin-bottom:20px;
+        }
+
+        .cta-section p{
+
+            font-size:20px;
+
+            margin-bottom:35px;
+        }
+
+        .cta-buttons{
+
+            display:flex;
+            justify-content:center;
+            gap:20px;
+
+            flex-wrap:wrap;
+        }
+
+        .cta-btn1{
+
+            padding:16px 34px;
+
+            border:none;
+
+            border-radius:12px;
+
+            background:white;
+
+            color:#06a635;
+
+            font-size:18px;
+
+            font-weight:600;
+
+            cursor:pointer;
+        }
+
+        .cta-btn2{
+
+            padding:16px 34px;
+
+            border:none;
+
+            border-radius:12px;
+
+            background:#06752a;
+
+            color:white;
+
+            font-size:18px;
+
+            font-weight:600;
+
+            cursor:pointer;
+        }
+
+        /* FOOTER */
+
+       /* FOOTER */
+
+footer{
+
+    background:
+    linear-gradient(rgba(7,21,45,0.95),
+    rgba(7,21,45,0.95)),
+    url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854');
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-attachment:fixed;
+
+    color:white;
+
+    padding:70px 8% 25px;
+}
+
+.footer-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:50px;
+
+    margin-bottom:45px;
+}
+
+.footer-logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-size:34px;
+
+    font-weight:800;
+
+    color:#00e05a;
+
+    margin-bottom:20px;
+}
+
+.footer-column p{
+
+    color:#cbd5e1;
+
+    line-height:34px;
+
+    font-size:17px;
+}
+
+.footer-column h2{
+
+    margin-bottom:24px;
+
+    font-size:28px;
+
+    font-weight:700;
+}
+/* FOOTER LINKS */
+
+.footer-column ul li a{
+
+    text-decoration:none;
+
+    color:#dbe4ee;
+
+    transition:0.3s;
+}
+
+.footer-column ul li a:hover{
+
+    color:#00e05a;
+
+}
+
+/* SOCIAL ICON LINKS */
+
+.social-icons a{
+
+    text-decoration:none;
+
+    color:white;
+}
+
+/* CONTACT LINKS */
+
+.contact-item a{
+
+    text-decoration:none;
+
+    color:#dbe4ee;
+
+    transition:0.3s;
+}
+
+.contact-item a:hover{
+
+    color:#00e05a;
+}
+
+.footer-column ul{
+
+    list-style:none;
+}
+
+.footer-column ul li{
+
+    margin-bottom:18px;
+
+    color:#dbe4ee;
+
+    font-size:17px;
+
+    transition:0.3s;
+
+    cursor:pointer;
+}
+
+.footer-column ul li:hover{
+
+    color:#00e05a;
+
+    transform:translateX(5px);
+}
+
+.social-icons{
+
+    margin-top:25px;
+
+    display:flex;
+
+    gap:16px;
+}
+
+.social-icons i{
+
+    width:50px;
+
+    height:50px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#132544;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+    transition:0.3s;
+}
+
+.social-icons i:hover{
+
+    background:#00e05a;
+
+    color:#07152d;
+}
+
+.contact-item{
+
+    display:flex;
+
+    gap:14px;
+
+    align-items:flex-start;
+
+    margin-bottom:20px;
+}
+
+.contact-item i{
+
+    color:#00e05a;
+
+    font-size:22px;
+
+    margin-top:4px;
+}
+
+.contact-item span{
+
+    color:#dbe4ee;
+
+    font-size:17px;
+
+    line-height:30px;
+}
+
+.copyright{
+
+    border-top:1px solid rgba(255,255,255,0.08);
+
+    padding-top:28px;
+
+    text-align:center;
+
+    color:#94a3b8;
+
+    line-height:34px;
+
+    font-size:16px;
+}
+
+        @media(max-width:900px){
+
+            .hero-content h1{
+
+                font-size:45px;
+                line-height:58px;
+            }
+
+            .farmers,
+            .buyers{
+
+                grid-template-columns:1fr;
+            }
+
+            nav ul{
+
+                display:none;
+            }
+
+            .buyer-grid{
+
+                grid-template-columns:1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+
+            <i class="fa-solid fa-seedling"></i>
+            Agri-Direct
+
+        </div>
+
+        <ul>
+
+            <li><a href="index.html">Home</a></li>
+<li><a href="products.html">Products</a></li>
+  <li><a href="/my-orders">My Orders</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="/profile">My Profile</a></li>
+
+        </ul>
+
+      
+    </nav>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Fresh From Farm to Your Table
+            </h1>
+
+            <p>
+                Connect directly with local farmers. Get fresh products at fair prices.
+            </p>
+
+            <div class="hero-buttons">
+
+    <a href="products.html">
+
+        <button class="browse-btn">
+
+            Browse Products
+
+        </button>
+
+    </a>
+
+    <a href="register.html">
+
+        <button class="farmer-btn">
+
+            Join as Farmer
+
+        </button>
+
+    </a>
+
+</div>
+
+        </div>
+
+    </section>
+
+    
+<!-- PRODUCTS SECTION -->
+
+<section class="products-section">
+
+    <div class="products-header">
+
+        <h1>Featured Products</h1>
+
+        <p>
+            Discover fresh farm products directly from trusted farmers
+        </p>
+
+    </div>
+
+    <div class="products-grid">
+
+        <!-- PRODUCT 1 -->
+
+        <div class="product-card">
+
+            <img src="https://images.unsplash.com/photo-1546094096-0df4bcaaa337">
+
+            <div class="product-content">
+
+                <span class="category">
+                    Vegetables
+                </span>
+
+                <h2>
+                    Fresh Organic Tomatoes
+                </h2>
+
+                <p>
+                    Farm-fresh organic tomatoes grown naturally without pesticides.
+                </p>
+
+                <div class="product-bottom">
+
+                    <div class="price">
+                        ₹40<span>/kg</span>
+                    </div>
+
+                    <div class="rating">
+
+                        ⭐ 4.5
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PRODUCT 2 -->
+
+        <div class="product-card">
+
+            <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c">
+
+            <div class="product-content">
+
+                <span class="category">
+                    Grains
+                </span>
+
+                <h2>
+                    Premium Basmati Rice
+                </h2>
+
+                <p>
+                    Aromatic long-grain basmati rice with rich flavor and quality.
+                </p>
+
+                <div class="product-bottom">
+
+                    <div class="price">
+                        ₹80<span>/kg</span>
+                    </div>
+
+                    <div class="rating">
+
+                        ⭐ 5.0
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PRODUCT 3 -->
+
+        <div class="product-card">
+
+            <img src="https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?w=800">
+
+            <div class="product-content">
+
+                <span class="category">
+                    Fruits
+                </span>
+
+                <h2>
+                    Fresh Farm Mangoes
+                </h2>
+
+                <p>
+                    Sweet Alphonso mangoes directly from local orchards.
+                </p>
+
+                <div class="product-bottom">
+
+                    <div class="price">
+                        ₹120<span>/dozen</span>
+                    </div>
+
+                    <div class="rating">
+
+                        ⭐ 4.8
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="products-btn">
+
+    <a href="products.html">
+
+        <button>
+
+            View All Products →
+
+        </button>
+
+    </a>
+
+</div>
+</section>
+    <!-- FARMERS -->
+
+    <section class="farmers">
+
+        <div class="farmers-text">
+
+            <h1>For Farmers</h1>
+
+            <p>
+                Sell directly to buyers and earn better profits
+            </p>
+
+            <ul>
+
+                <li><i class="fa-solid fa-circle-check"></i> No middlemen</li>
+
+                <li><i class="fa-solid fa-circle-check"></i> Set your own prices</li>
+
+                <li><i class="fa-solid fa-circle-check"></i> Easy product management</li>
+
+                <li><i class="fa-solid fa-circle-check"></i> Receive instant payments</li>
+
+            </ul>
+
+            <a href="register.html">
+
+    <button>
+
+        Register as Farmer
+
+    </button>
+
+</a>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1471193945509-9ad0617afabf">
+
+    </section>
+
+    <!-- BUYERS -->
+
+    <section class="buyers">
+
+        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e">
+
+        <div class="buyers-content">
+
+            <h1>For Buyers</h1>
+
+            <p>
+                Get fresh produce directly from farms at affordable prices
+            </p>
+
+            <div class="buyer-grid">
+
+                <div class="buyer-card">
+
+                    <i class="fa-solid fa-seedling"></i>
+
+                    <h2>Fresh Products</h2>
+
+                    <p>100% farm fresh products</p>
+
+                </div>
+
+                <div class="buyer-card">
+
+                    <i class="fa-solid fa-dollar-sign"></i>
+
+                    <h2>Best Prices</h2>
+
+                    <p>No middleman charges</p>
+
+                </div>
+
+                <div class="buyer-card">
+
+                    <i class="fa-solid fa-shield"></i>
+
+                    <h2>Quality Assured</h2>
+
+                    <p>Verified farmers only</p>
+
+                </div>
+
+                <div class="buyer-card">
+
+                    <i class="fa-solid fa-truck"></i>
+
+                    <h2>Fast Delivery</h2>
+
+                    <p>Directly from farms</p>
+
+                </div>
+
+            </div>
+
+           <a href="products.html">
+
+    <button class="shop-btn">
+
+        Start Shopping
+
+    </button>
+
+</a>
+
+        </div>
+
+    </section>
+
+    <!-- CTA -->
+
+    <section class="cta-section">
+
+        <h1>
+            Ready to Get Started?
+        </h1>
+
+        <p>
+            Join thousands of farmers and buyers today
+        </p>
+
+       <div class="cta-buttons">
+
+    <a href="register.html">
+
+        <button class="cta-btn1">
+
+            Register Now
+
+        </button>
+
+    </a>
+
+    <a href="products.html">
+
+        <button class="cta-btn2">
+
+            Browse Products
+
+        </button>
+
+    </a>
+
+</div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+   <!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-grid">
+
+        <!-- LEFT -->
+
+        <div class="footer-column">
+
+            <div class="footer-logo">
+
+                <i class="fa-solid fa-seedling"></i>
+
+                <span>Agri-Direct</span>
+
+            </div>
+
+            <p>
+                Connecting farmers directly with buyers.<br>
+                Fresh produce, fair prices, no intermediaries.
+            </p>
+
+            <!-- SOCIAL ICONS -->
+
+            <div class="social-icons">
+
+                <a href="https://facebook.com" target="_blank">
+
+                    <i class="fa-brands fa-facebook-f"></i>
+
+                </a>
+
+                <a href="https://twitter.com" target="_blank">
+
+                    <i class="fa-brands fa-twitter"></i>
+
+                </a>
+
+                <a href="https://instagram.com" target="_blank">
+
+                    <i class="fa-brands fa-instagram"></i>
+
+                </a>
+
+                <a href="https://linkedin.com" target="_blank">
+
+                    <i class="fa-brands fa-linkedin-in"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-column">
+
+            <h2>Quick Links</h2>
+
+            <ul>
+
+                <li>
+
+                    <a href="index.html">Home</a>
+
+                </li>
+
+                <li>
+
+                    <a href="products.html">Products</a>
+
+                </li>
+
+                <li>
+
+                    <a href="about.html">About Us</a>
+
+                </li>
+
+                <li>
+
+                    <a href="contact.html">Contact</a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- FOR FARMERS -->
+
+        <div class="footer-column">
+
+            <h2>For Farmers</h2>
+
+            <ul>
+
+                <li>
+
+                    <a href="register.html">
+
+                        Register as Farmer
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="login.html">
+
+                        Farmer Login
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="add-product.html">
+
+                        Sell Your Products
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="contact.html">
+
+                        Guidelines
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- CONTACT -->
+
+        <div class="footer-column">
+
+            <h2>Contact Us</h2>
+
+            <div class="contact-item">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                <span>
+                    Hyderabad, Telangana, India
+                </span>
+
+            </div>
+
+            <div class="contact-item">
+
+                <i class="fa-solid fa-envelope"></i>
+
+                <a href="mailto:support@agridirect.com">
+
+                    support@agridirect.com
+
+                </a>
+
+            </div>
+
+            <div class="contact-item">
+
+                <i class="fa-solid fa-phone"></i>
+
+                <a href="tel:+911234567890">
+
+                    +91 123 456 7890
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- COPYRIGHT -->
+
+    <div class="copyright">
+
+        <p>
+            © 2026 Agri-Direct. All rights reserved. |
+            Developed by Kushitha Aragondaa & Pradeep
+        </p>
+
+        <p>
+            Summer Internship Project under IIT Mentor
+            Dr. Abhishek Srivastava |
+            Guided by Himanshu Mishra Sir
+        </p>
+
+    </div>
+
+</footer>

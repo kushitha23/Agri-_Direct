@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Products | Agri-Direct</title>
+
+    <!-- GOOGLE FONT -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Sora',sans-serif;
+        }
+
+        body{
+            background:#f5f7fb;
+            color:#081224;
+        }
+
+        /* NAVBAR */
+
+        nav{
+
+            width:100%;
+
+            display:flex;
+
+            justify-content:space-between;
+
+            align-items:center;
+
+            padding:14px 8%;
+
+            background:white;
+
+            box-shadow:0 4px 10px rgba(0,0,0,0.05);
+
+            position:sticky;
+
+            top:0;
+
+            z-index:1000;
+        }
+
+        .logo{
+
+            font-size:22px;
+
+            font-weight:800;
+
+            color:#05a834;
+        }
+
+        .logo i{
+
+            margin-right:6px;
+        }
+
+        nav ul{
+
+            display:flex;
+
+            gap:24px;
+
+            list-style:none;
+        }
+
+        nav ul li a{
+
+            text-decoration:none;
+
+            color:#334155;
+
+            font-size:13px;
+
+            font-weight:500;
+
+            transition:0.3s;
+        }
+
+        nav ul li a:hover{
+
+            color:#05a834;
+        }
+
+        .nav-btn{
+
+            padding:9px 16px;
+
+            border:none;
+
+            border-radius:10px;
+
+            background:#05a834;
+
+            color:white;
+
+            font-size:13px;
+
+            font-weight:600;
+
+            cursor:pointer;
+        }
+
+        /* HERO */
+
+        .hero{
+
+            background:#05a834;
+
+            padding:70px 8%;
+
+            color:white;
+        }
+
+        .hero-content h1{
+
+            font-size:42px;
+
+            font-weight:800;
+
+            margin-bottom:14px;
+        }
+
+        .hero-content p{
+
+            font-size:16px;
+        }
+
+        /* SEARCH */
+
+        .search-section{
+
+            padding:28px 8%;
+        }
+
+        .search-container{
+
+            display:flex;
+
+            gap:14px;
+
+            align-items:center;
+        }
+
+        .search-box{
+
+            flex:1;
+
+            position:relative;
+        }
+
+        .search-box i{
+
+            position:absolute;
+
+            left:18px;
+
+            top:18px;
+
+            color:#94a3b8;
+
+            font-size:18px;
+        }
+
+        .search-box input{
+
+            width:100%;
+
+            padding:16px 16px 16px 48px;
+
+            border:1px solid #dbe4ee;
+
+            border-radius:14px;
+
+            font-size:15px;
+
+            background:white;
+
+            outline:none;
+        }
+
+        .filter-box{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:10px;
+
+            background:white;
+
+            border:1px solid #dbe4ee;
+
+            border-radius:14px;
+
+            padding:0 16px;
+
+            height:52px;
+        }
+
+        .filter-box select{
+
+            border:none;
+
+            outline:none;
+
+            font-size:15px;
+
+            background:none;
+
+            cursor:pointer;
+        }
+
+        /* PRODUCTS */
+
+     .products{
+
+    padding:40px 8% 70px;
+}
+
+.products-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,minmax(250px,1fr));
+
+    gap:30px;
+}
+
+.product-link{
+
+    text-decoration:none;
+
+    color:inherit;
+}
+
+.product-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+    transition:0.3s;
+
+    width:100%;
+}
+
+.product-card:hover{
+
+    transform:translateY(-6px);
+}
+
+.product-card img{
+
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+}
+
+.product-content{
+
+    padding:18px;
+}
+
+.buy-btn{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-top:18px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#08b12c;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+        /* FOOTER */
+
+        footer{
+
+            background:#07152d;
+
+            color:white;
+
+            padding:45px 8% 20px;
+        }
+
+        .footer-grid{
+
+            display:grid;
+
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+            gap:30px;
+
+            margin-bottom:25px;
+        }
+
+        .footer-logo{
+
+            font-size:22px;
+
+            font-weight:800;
+
+            color:#00e05a;
+
+            margin-bottom:14px;
+        }.footer-column ul li a{
+
+    text-decoration:none;
+
+    color:#dbe4ee;
+
+    transition:0.3s;
+}
+
+.footer-column ul li a:hover{
+
+    color:#00e05a;
+
+}
+
+/* SOCIAL ICON LINKS */
+
+.social-icons a{
+
+    text-decoration:none;
+
+    color:white;
+}
+
+/* CONTACT LINKS */
+
+.contact-item a{
+
+    text-decoration:none;
+
+    color:#dbe4ee;
+
+    transition:0.3s;
+}
+
+.contact-item a:hover{
+
+    color:#00e05a;
+}
+
+        .footer-column h2{
+
+            margin-bottom:14px;
+
+            font-size:18px;
+        }
+
+        .footer-column ul{
+
+            list-style:none;
+        }
+
+        .footer-column ul li{
+
+            margin-bottom:9px;
+
+            color:#dbe4ee;
+
+            font-size:13px;
+        }
+
+        .footer-column p{
+
+            color:#cbd5e1;
+
+            line-height:24px;
+
+            font-size:13px;
+        }
+
+        .copyright{
+
+            border-top:1px solid rgba(255,255,255,0.08);
+
+            padding-top:16px;
+
+            text-align:center;
+
+            color:#94a3b8;
+
+            font-size:12px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:900px){
+
+            nav ul{
+
+                display:none;
+            }
+
+            .hero-content h1{
+
+                font-size:32px;
+            }
+
+            .hero-content p{
+
+                font-size:14px;
+            }
+
+            .search-container{
+
+                flex-direction:column;
+            }
+
+            .filter-box{
+
+                width:100%;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+
+            <i class="fa-solid fa-seedling"></i>
+
+            Agri-Direct
+
+        </div>
+
+        <ul>
+
+            <li><a href="index.html">Home</a></li>
+
+            <li><a href="products.html">Products</a></li>
+
+            <li><a href="about.html">About</a></li>
+
+            <li><a href="contact.html">Contact</a></li>
+
+        </ul>
+
+        <a href="register.html">
+
+    <button class="nav-btn">
+
+        Become Seller
+
+    </button>
+
+</a>
+
+    </nav>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>Browse Products</h1>
+
+            <p>
+                Fresh produce directly from local farmers
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- SEARCH -->
+
+    <section class="search-section">
+
+        <div class="search-container">
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input type="text"
+id="searchInput"
+placeholder="Search products..."
+onkeyup="searchProducts()">
+            </div>
+
+            <div class="filter-box">
+
+                <i class="fa-solid fa-filter"></i>
+
+              <select
+id="categoryFilter"
+onchange="filterProducts()">
+
+    <option value="All">All</option>
+
+    <option value="Vegetables">
+        Vegetables
+    </option>
+
+    <option value="Fruits">
+        Fruits
+    </option>
+
+    <option value="Grains">
+        Grains
+    </option>
+
+    <option value="Dairy">
+        Dairy
+    </option>
+
+    <option value="Organic">
+        Organic
+    </option>
+
+</select>
+
+            </div>
+
+        </div>
+
+    </section>
+
+   <!-- PRODUCTS -->
+<!-- PRODUCTS -->
+
+<section class="products">
+
+    <div class="products-grid">
+
+        {% for product in products %}
+
+        <a href="/product/{{ product.id }}"
+style="text-decoration:none;color:inherit;">
+
+<div class="product-card"
+data-name="{{ product.name }} {{ product.category }}"
+data-category="{{ product.category }}">
+
+           {% if "http" in product.image %}
+    <img src="{{ product.image }}" alt="{{ product.name }}">
+{% else %}
+    <img src="data:image/png;base64,{{ product.image }}" alt="{{ product.name }}">
+{% endif %}
+            <div class="product-content">
+
+                <span class="category">
+
+                    {{ product.category }}
+
+                </span>
+
+                <h2>
+
+                    {{ product.name }}
+
+                </h2>
+
+                <p>
+
+                    {{ product.description }}
+
+                </p>
+
+                <div class="product-bottom">
+
+                    <div class="price">
+
+                        ₹{{ product.price }}
+
+                    </div>
+
+                    <div class="rating">
+
+                        ⭐ 5.0
+
+                    </div>
+
+                </div>
+
+                
+            </div>
+
+        </div>
+</a>
+        {% endfor %}
+
+    </div>
+
+</section>
+<!-- FOOTER -->
+
+
+
+<!-- SCRIPT -->
+
+<script>
+
+function addToCart(event, name, price, image){
+
+    let cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
+
+    let existingProduct =
+    cart.find(item => item.name === name);
+
+    if(existingProduct){
+
+        existingProduct.quantity += 1;
+
+    }
+
+    else{
+
+        cart.push({
+
+            name:name,
+            price:price,
+            image:image,
+            quantity:1
+
+        });
+
+    }
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    alert(name + " added to cart!");
+
+    window.location.href = "cart.html";
+}
+
+function searchProducts(){
+
+    let input =
+    document.getElementById("searchInput")
+    .value.toLowerCase();
+
+    let products =
+    document.querySelectorAll(".product-card");
+
+    products.forEach(function(product){
+
+        let productName =
+        product.getAttribute("data-name")
+        .toLowerCase();
+
+        if(productName.includes(input)){
+
+            product.style.display = "block";
+
+        }
+
+        else{
+
+            product.style.display = "none";
+
+        }
+
+    });
+
+}
+function filterProducts(){
+
+    let selectedCategory =
+    document.getElementById(
+        "categoryFilter"
+    ).value;
+
+    let products =
+    document.querySelectorAll(
+        ".product-card"
+    );
+
+    products.forEach(function(product){
+
+        let category =
+        product.getAttribute(
+            "data-category"
+        );
+
+        if(
+            selectedCategory === "All" ||
+            category === selectedCategory
+        ){
+
+            product.style.display =
+            "block";
+
+        }
+
+        else{
+
+            product.style.display =
+            "none";
+
+        }
+
+    });
+
+}
+</script>
+
+</body>
+</html>
+    <!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-grid">
+
+        <!-- LEFT -->
+
+        <div class="footer-column">
+
+            <div class="footer-logo">
+
+                <i class="fa-solid fa-seedling"></i>
+
+                <span>Agri-Direct</span>
+
+            </div>
+
+            <p>
+                Connecting farmers directly with buyers.<br>
+                Fresh produce, fair prices, no intermediaries.
+            </p>
+
+            <!-- SOCIAL ICONS -->
+
+            <div class="social-icons">
+
+                <a href="https://facebook.com" target="_blank">
+
+                    <i class="fa-brands fa-facebook-f"></i>
+
+                </a>
+
+                <a href="https://twitter.com" target="_blank">
+
+                    <i class="fa-brands fa-twitter"></i>
+
+                </a>
+
+                <a href="https://instagram.com" target="_blank">
+
+                    <i class="fa-brands fa-instagram"></i>
+
+                </a>
+
+                <a href="https://linkedin.com" target="_blank">
+
+                    <i class="fa-brands fa-linkedin-in"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-column">
+
+            <h2>Quick Links</h2>
+
+            <ul>
+
+                <li>
+
+                    <a href="index.html">Home</a>
+
+                </li>
+
+                <li>
+
+                    <a href="products.html">Products</a>
+
+                </li>
+
+                <li>
+
+                    <a href="about.html">About Us</a>
+
+                </li>
+
+                <li>
+
+                    <a href="contact.html">Contact</a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- FOR FARMERS -->
+
+        <div class="footer-column">
+
+            <h2>For Farmers</h2>
+
+            <ul>
+
+                <li>
+
+                    <a href="register.html">
+
+                        Register as Farmer
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="login.html">
+
+                        Farmer Login
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="add-product.html">
+
+                        Sell Your Products
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="contact.html">
+
+                        Guidelines
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- CONTACT -->
+
+        <div class="footer-column">
+
+            <h2>Contact Us</h2>
+
+            <div class="contact-item">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                <span>
+                    Hyderabad, Telangana, India
+                </span>
+
+            </div>
+
+            <div class="contact-item">
+
+                <i class="fa-solid fa-envelope"></i>
+
+                <a href="mailto:support@agridirect.com">
+
+                    support@agridirect.com
+
+                </a>
+
+            </div>
+
+            <div class="contact-item">
+
+                <i class="fa-solid fa-phone"></i>
+
+                <a href="tel:+911234567890">
+
+                    +91 123 456 7890
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- COPYRIGHT -->
+
+    <div class="copyright">
+
+        <p>
+            © 2026 Agri-Direct. All rights reserved. |
+            Developed by Kushitha Aragondaa & Pradeep
+        </p>
+
+        <p>
+            Summer Internship Project under IIT Mentor
+            Dr. Abhishek Srivastava |
+            Guided by Himanshu Mishra Sir
+        </p>
+
+    </div>
+
+</footer>

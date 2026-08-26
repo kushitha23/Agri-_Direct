@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+    <title>Farmer Orders | Agri-Direct</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+body{
+
+    min-height:100vh;
+
+    background:
+    linear-gradient(
+        135deg,
+        #22c55e,
+        #16a34a,
+        #0f766e
+    );
+
+    padding:30px 7%;
+}
+
+        a{
+            text-decoration:none;
+            color:inherit;
+        }
+
+        /* TOPBAR */
+
+        .topbar{
+
+            background:white;
+            padding:22px 30px;
+            border-radius:24px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:35px;
+            box-shadow:0 8px 20px rgba(0,0,0,0.05);
+            flex-wrap:wrap;
+            gap:20px;
+        }
+
+        .topbar h1{
+
+            font-size:38px;
+            color:#0f172a;
+        }
+
+        .back-btn{
+
+            border:none;
+            padding:14px 22px;
+            border-radius:14px;
+            background:#22c55e;
+            color:white;
+            font-weight:700;
+            cursor:pointer;
+        }
+
+        /* STATS */
+
+        .stats-grid{
+
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:25px;
+            margin-bottom:35px;
+        }
+
+        .stat-card{
+
+            background:white;
+            padding:28px;
+            border-radius:26px;
+            box-shadow:0 8px 20px rgba(0,0,0,0.05);
+        }
+
+        .stat-card i{
+
+            font-size:34px;
+            color:#22c55e;
+            margin-bottom:18px;
+        }
+
+        .stat-card h2{
+
+            font-size:32px;
+            color:#0f172a;
+            margin-bottom:8px;
+        }
+
+        .stat-card p{
+
+            color:#64748b;
+        }
+
+        /* ORDERS */
+
+        .orders-box{
+
+            background:white;
+            padding:30px;
+            border-radius:28px;
+            box-shadow:0 8px 20px rgba(0,0,0,0.05);
+            overflow-x:auto;
+        }
+
+        table{
+
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        th{
+
+            background:#f8fafc;
+            padding:18px;
+            text-align:left;
+            color:#0f172a;
+        }
+
+        td{
+
+            padding:18px;
+            border-bottom:1px solid #eef2f7;
+            color:#475569;
+        }
+
+        /* STATUS */
+
+        .status{
+
+            padding:8px 14px;
+            border-radius:30px;
+            font-size:13px;
+            font-weight:700;
+            display:inline-block;
+        }
+
+        .pending{
+
+            background:#fef3c7;
+            color:#b45309;
+        }
+
+        .accepted{
+
+            background:#dbeafe;
+            color:#2563eb;
+        }
+
+        .delivered{
+
+            background:#dcfce7;
+            color:#15803d;
+        }
+
+        .rejected{
+
+            background:#fee2e2;
+            color:#dc2626;
+        }
+
+        .shipped{
+
+            background:#ede9fe;
+            color:#7c3aed;
+        }
+
+        /* BUTTONS */
+
+        .action-btn{
+
+            border:none;
+            padding:10px 16px;
+            border-radius:12px;
+            color:white;
+            cursor:pointer;
+            font-size:13px;
+            font-weight:600;
+            margin:3px;
+        }
+
+        .accept{
+
+            background:#22c55e;
+        }
+
+        .reject{
+
+            background:#ef4444;
+        }
+
+        .ship{
+
+            background:#7c3aed;
+        }
+
+        .deliver{
+
+            background:#0f172a;
+        }
+        .completed{
+
+    background:#d1fae5;
+    color:#065f46;
+}
+
+        /* MOBILE */
+
+        @media(max-width:1100px){
+
+            .stats-grid{
+
+                grid-template-columns:repeat(2,1fr);
+            }
+        }
+
+        @media(max-width:700px){
+
+            .stats-grid{
+
+                grid-template-columns:1fr;
+            }
+
+            .topbar{
+
+                flex-direction:column;
+                align-items:flex-start;
+            }
+
+            table{
+
+                display:block;
+                overflow-x:auto;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+        <h1>📦 Farmer Orders</h1>
+
+        <a href="farmer-dashboard.html">
+
+            <button class="back-btn">
+
+                Back Dashboard
+
+            </button>
+
+        </a>
+
+    </div>
+
+    <!-- STATS -->
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <h2 id="totalOrders">0</h2>
+
+            <p>Total Orders</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <i class="fa-solid fa-clock"></i>
+
+            <h2 id="pendingOrders">0</h2>
+
+            <p>Pending Orders</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <i class="fa-solid fa-truck"></i>
+
+            <h2 id="deliveredOrders">0</h2>
+
+            <p>Delivered Orders</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+
+            <h2 id="totalRevenue">₹0</h2>
+
+            <p>Total Revenue</p>
+
+        </div>
+
+    </div>
+
+    <!-- ORDERS -->
+
+    <div class="orders-box">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Products</th>
+                    <th>Amount</th>
+                    <th>Payment</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="ordersTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- SCRIPT -->
+
+   <script>
+
+let orders = [
+
+{% for order in orders %}
+
+{
+    id:"{{ order.id }}",
+    customer:"{{ order.buyer_name }}",
+    products:"{{ order.product_name }}",
+    amount:{{ order.total_price }},
+    payment:"{{ order.payment_method }}",
+    status:"{{ order.status }}"
+},
+
+{% endfor %}
+
+];
+
+let table =
+document.getElementById("ordersTable");
+
+function loadOrders(){
+
+    table.innerHTML = "";
+
+    orders.forEach((order,index) => {
+
+        let statusClass =
+        order.status.toLowerCase().replace(" ","-");
+
+        let actions = "";
+
+        if(
+            order.status === "Refund Requested"
+        ){
+
+            actions =
+            `
+            <span style="
+            color:#f59e0b;
+            font-weight:700;">
+            Refund Processing
+            </span>
+            `;
+        }
+
+        else if(
+            order.status === "Delivered" ||
+            order.status === "Completed"
+        ){
+
+            actions =
+            `
+            <span style="
+            color:green;
+            font-weight:700;">
+            Completed
+            </span>
+            `;
+        }
+
+        else{
+
+            actions =
+            `
+            <button class="action-btn accept"
+            onclick="window.location.href='/update-order-status/${order.id}/Accepted'">
+
+                Accept
+
+            </button>
+
+            <button class="action-btn reject"
+            onclick="window.location.href='/update-order-status/${order.id}/Rejected'">
+
+                Reject
+
+            </button>
+
+            <button class="action-btn ship"
+            onclick="window.location.href='/ship-order/${order.id}'">
+
+                Ship
+
+            </button>
+
+            <button class="action-btn deliver"
+            onclick="window.location.href='/update-order-status/${order.id}/Delivered'">
+
+                Deliver
+
+            </button>
+            `;
+        }
+
+        table.innerHTML +=
+        `
+        <tr>
+
+            <td>${order.id}</td>
+
+            <td>${order.customer}</td>
+
+            <td>${order.products}</td>
+
+            <td>₹${order.amount}</td>
+
+            <td>${order.payment}</td>
+
+            <td>
+
+                <span class="status ${statusClass}">
+
+                    ${order.status}
+
+                </span>
+
+            </td>
+
+            <td>
+
+                ${actions}
+
+            </td>
+
+        </tr>
+        `;
+    });
+
+    updateStats();
+}
+
+function updateStats(){
+
+    let total = orders.length;
+
+    let pending = 0;
+
+    let delivered = 0;
+
+    let revenue = 0;
+
+    orders.forEach(order => {
+
+        if(
+            order.status === "Paid" ||
+            order.status === "Accepted" ||
+            order.status === "Shipped"
+        ){
+            pending++;
+        }
+
+        if(
+            order.status === "Delivered" ||
+            order.status === "Completed"
+        ){
+            delivered++;
+            revenue += order.amount;
+        }
+
+    });
+
+    document.getElementById("totalOrders").innerText = total;
+    document.getElementById("pendingOrders").innerText = pending;
+    document.getElementById("deliveredOrders").innerText = delivered;
+    document.getElementById("totalRevenue").innerText = "₹" + revenue;
+}
+
+loadOrders();
+
+</script>
+
+</body>
+
+</html>

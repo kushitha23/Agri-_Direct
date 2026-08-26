@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Outfit',sans-serif;
+}
+
+body{
+
+    background:#f0fdf4;
+
+    padding:35px 7%;
+
+    color:#052e16;
+}
+
+/* TOPBAR */
+
+.topbar{
+
+    background:white;
+
+    padding:24px 30px;
+
+    border-radius:28px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:35px;
+
+    border:1px solid #bbf7d0;
+
+    box-shadow:
+    0 10px 30px rgba(34,197,94,0.08);
+}
+
+.topbar h1{
+
+    font-size:34px;
+
+    font-weight:700;
+}
+
+.admin-actions{
+
+    display:flex;
+    gap:15px;
+}
+
+.top-btn{
+
+    border:none;
+
+    padding:13px 22px;
+
+    border-radius:14px;
+
+    color:white;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.notify-btn{
+
+    background:#16a34a;
+}
+
+.logout-btn{
+
+    background:#ef4444;
+}
+
+.top-btn:hover{
+
+    transform:translateY(-3px);
+}
+
+/* STATS */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(5,1fr);
+
+    gap:22px;
+
+    margin-bottom:35px;
+}
+
+.stat-card{
+
+    background:white;
+
+    padding:28px;
+
+    border-radius:28px;
+
+    border:1px solid #bbf7d0;
+
+    box-shadow:
+    0 8px 24px rgba(34,197,94,0.06);
+
+    transition:0.3s;
+}
+
+.stat-card:hover{
+
+    transform:translateY(-6px);
+}
+
+.stat-card i{
+
+    font-size:32px;
+
+    color:#16a34a;
+
+    margin-bottom:18px;
+}
+
+.stat-card h2{
+
+    font-size:34px;
+
+    margin-bottom:8px;
+}
+
+.stat-card p{
+
+    color:#166534;
+}
+
+/* ACTIONS */
+
+.actions{
+
+    display:grid;
+
+    grid-template-columns:repeat(5,1fr);
+
+    gap:22px;
+
+    margin-bottom:35px;
+}
+
+.action-card{
+
+    background:white;
+
+    padding:34px 28px;
+
+    border-radius:28px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    border:1px solid #bbf7d0;
+
+    box-shadow:
+    0 8px 24px rgba(34,197,94,0.06);
+}
+
+.action-card:hover{
+
+    transform:translateY(-6px);
+
+    background:#16a34a;
+}
+
+.action-card:hover i,
+.action-card:hover h3,
+.action-card:hover p{
+
+    color:white;
+}
+
+.action-card i{
+
+    font-size:42px;
+
+    color:#16a34a;
+
+    margin-bottom:18px;
+}
+
+.action-card h3{
+
+    font-size:20px;
+
+    margin-bottom:10px;
+}
+
+.action-card p{
+
+    color:#166534;
+
+    font-size:14px;
+
+    line-height:25px;
+}
+
+/* GRID */
+
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:25px;
+}
+
+/* TABLE */
+
+.table-box,
+.activity-box{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:28px;
+
+    border:1px solid #bbf7d0;
+
+    box-shadow:
+    0 8px 24px rgba(34,197,94,0.06);
+}
+
+.table-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:25px;
+}
+
+.table-header h2,
+.activity-box h2{
+
+    font-size:28px;
+}
+
+.table-header input{
+
+    padding:14px 18px;
+
+    border:none;
+
+    background:#f0fdf4;
+
+    border-radius:16px;
+
+    outline:none;
+
+    width:260px;
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+th{
+
+    background:#f0fdf4;
+
+    padding:18px;
+
+    text-align:left;
+
+    font-size:14px;
+}
+
+td{
+
+    padding:18px;
+
+    border-bottom:1px solid #dcfce7;
+
+    font-size:14px;
+}
+
+/* STATUS */
+
+.status{
+
+    padding:8px 14px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:700;
+}
+
+.pending{
+
+    background:#fef3c7;
+    color:#b45309;
+}
+
+.approved{
+
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.rejected{
+
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+/* BUTTONS */
+
+.approve-btn,
+.reject-btn,
+.delete-btn{
+
+    border:none;
+
+    padding:10px 15px;
+
+    border-radius:12px;
+
+    color:white;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    margin:3px;
+
+    transition:0.3s;
+}
+
+.approve-btn{
+
+    background:#16a34a;
+}
+
+.reject-btn{
+
+    background:#f59e0b;
+}
+
+.delete-btn{
+
+    background:#ef4444;
+}
+
+.approve-btn:hover,
+.reject-btn:hover,
+.delete-btn:hover{
+
+    transform:scale(1.05);
+}
+
+/* ACTIVITY */
+
+.activity{
+
+    display:flex;
+
+    gap:16px;
+
+    margin-bottom:22px;
+}
+
+.activity i{
+
+    width:50px;
+    height:50px;
+
+    background:#dcfce7;
+
+    border-radius:18px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:#16a34a;
+
+    font-size:18px;
+}
+
+.activity h4{
+
+    font-size:15px;
+
+    margin-bottom:5px;
+}
+
+.activity p{
+
+    color:#166534;
+
+    font-size:13px;
+
+    line-height:22px;
+}
+
+/* MOBILE */
+
+@media(max-width:1200px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .actions{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .dashboard-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:700px){
+
+    body{
+        padding:20px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .actions{
+        grid-template-columns:1fr;
+    }
+
+    .topbar{
+
+        flex-direction:column;
+        align-items:flex-start;
+
+        gap:20px;
+    }
+
+    table{
+        display:block;
+        overflow-x:auto;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- TOPBAR -->
+
+<div class="topbar">
+
+    <h1>Admin Dashboard</h1>
+
+    <div class="admin-actions">
+
+        <button class="top-btn notify-btn"
+        onclick="showNotifications()">
+
+            Notifications
+
+        </button>
+        
+
+        <button class="top-btn logout-btn"
+        onclick="logoutAdmin()">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- STATS -->
+
+<div class="stats">
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-user-tie"></i>
+
+        <h2>{{ total_farmers }}</h2>
+
+        <p>Total Farmers</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-users"></i>
+
+        <h2>{{ total_buyers }}</h2>
+
+        <p>Total Customers</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-cart-shopping"></i>
+
+        <h2>{{ total_orders }}</h2>
+
+        <p>Total Orders</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-box"></i>
+
+        <h2>{{ total_products }}</h2>
+
+        <p>Total Products</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-wallet"></i>
+
+        <h2>₹{{ total_revenue }}</h2>
+
+        <p>Total Revenue</p>
+
+    </div>
+
+</div>
+
+<!-- ACTIONS -->
+
+<div class="actions">
+
+    <div class="action-card"
+    onclick="window.location.href='manage-farmers.html'">
+
+        <i class="fa-solid fa-user-group"></i>
+
+        <h3>Manage Farmers</h3>
+
+        <p>Approve and manage farmer accounts</p>
+
+    </div>
+
+<div class="action-card"
+onclick="window.location.href='manage-buyers.html'">
+
+    <i class="fa-solid fa-users"></i>
+
+    <h3>Manage Buyers</h3>
+
+    <p>View and manage buyers</p>
+
+</div>
+
+    <div class="action-card"
+    onclick="window.location.href='manage-orders.html'">
+
+        <i class="fa-solid fa-bag-shopping"></i>
+
+        <h3>Manage Orders</h3>
+
+        <p>Track all marketplace orders</p>
+
+    </div>
+
+    <div class="action-card"
+    onclick="window.location.href='manage-products.html'">
+
+        <i class="fa-solid fa-layer-group"></i>
+
+        <h3>Manage Products</h3>
+
+        <p>Edit and monitor products</p>
+
+    </div>
+
+    <div class="action-card"
+    onclick="window.location.href='reports.html'">
+
+        <i class="fa-solid fa-chart-line"></i>
+
+        <h3>Reports</h3>
+
+        <p>View reports and analytics</p>
+
+    </div>
+
+</div>
+
+<!-- GRID -->
+
+<div class="dashboard-grid">
+
+<div class="table-box">
+
+<div class="table-header">
+
+<h2>Farmer Approvals</h2>
+
+<input type="text"
+id="searchInput"
+placeholder="Search farmer..."
+onkeyup="searchFarmers()">
+
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+
+<tr>
+
+    <th>Farmer</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Status</th>
+    <th>Actions</th>
+
+</tr>
+
+</tr>
+
+</thead>
+
+<tbody id="farmerTable">
+
+</tbody>
+<tbody>
+
+{% for farmer in recent_farmers %}
+
+<tr>
+
+    <td>{{ farmer.fullname }}</td>
+
+    <td>{{ farmer.email }}</td>
+
+    <td>{{ farmer.phone }}</td>
+
+    <td>{{ farmer.status }}</td>
+
+    <td>
+
+        {% if farmer.status == 'Pending' %}
+
+        <a href="/approve-farmer/{{ farmer.id }}">
+            <button class="approve-btn">
+                Approve
+            </button>
+        </a>
+
+        <a href="/reject-farmer/{{ farmer.id }}">
+            <button class="reject-btn">
+                Reject
+            </button>
+        </a>
+
+        {% else %}
+
+        <span>{{ farmer.status }}</span>
+
+        {% endif %}
+
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- ACTIVITY -->
+
+<div class="activity-box">
+
+<h2>Recent Activity</h2>
+
+<div class="activity">
+
+<i class="fa-solid fa-user-plus"></i>
+
+<div>
+
+<h4>New Farmer Registered</h4>
+
+<p>Fresh Roots Farm joined platform</p>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<i class="fa-solid fa-box"></i>
+
+<div>
+
+<h4>New Product Added</h4>
+
+<p>Organic Tomatoes added</p>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+<div>
+
+<h4>New Order Received</h4>
+
+<p>Order #AGR1025 placed</p>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<i class="fa-solid fa-circle-check"></i>
+
+<div>
+
+<h4>Farmer Approved</h4>
+
+<p>Nature Farm approved</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* FARMERS */
+
+
+let farmerTable =
+document.getElementById(
+"farmerTable"
+);
+
+/* LOAD FARMERS */
+
+function loadFarmers(){
+
+farmerTable.innerHTML = "";
+
+farmers.forEach((farmer,index)=>{
+
+let statusClass =
+farmer.status.toLowerCase();
+
+farmerTable.innerHTML += `
+
+<tr>
+
+<td>${farmer.name}</td>
+
+<td>${farmer.farm}</td>
+
+<td>${farmer.email}</td>
+
+<td>${farmer.phone}</td>
+
+<td>${farmer.products}</td>
+
+<td>${farmer.orders}</td>
+
+<td>₹${farmer.revenue.toLocaleString()}</td>
+
+<td>
+
+<span class="status ${statusClass}">
+
+${farmer.status}
+
+</span>
+
+</td>
+
+<td>
+
+<button class="approve-btn"
+onclick="approveFarmer(${index})">
+
+Approve
+
+</button>
+
+<button class="reject-btn"
+onclick="rejectFarmer(${index})">
+
+Reject
+
+</button>
+
+<button class="delete-btn"
+onclick="deleteFarmer(${index})">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+});
+
+updateStats();
+}
+
+/* UPDATE STATS */
+
+function updateStats(){
+
+let totalProducts = 0;
+
+let totalOrders = 0;
+
+let totalRevenue = 0;
+
+farmers.forEach(farmer => {
+
+totalProducts += farmer.products;
+
+totalOrders += farmer.orders;
+
+totalRevenue += farmer.revenue;
+
+});
+
+document.getElementById(
+"totalFarmers"
+).innerText =
+farmers.length;
+
+document.getElementById(
+"totalCustomers"
+).innerText =
+1240;
+
+document.getElementById(
+"totalOrders"
+).innerText =
+totalOrders;
+
+document.getElementById(
+"totalProducts"
+).innerText =
+totalProducts;
+
+document.getElementById(
+"totalRevenue"
+).innerText =
+"₹" +
+totalRevenue.toLocaleString();
+}
+
+/* APPROVE */
+
+function approveFarmer(index){
+
+farmers[index].status =
+"Approved";
+
+loadFarmers();
+
+alert(
+farmers[index].name +
+" Approved Successfully"
+);
+}
+
+/* REJECT */
+
+function rejectFarmer(index){
+
+farmers[index].status =
+"Rejected";
+
+loadFarmers();
+
+alert(
+farmers[index].name +
+" Rejected"
+);
+}
+
+/* DELETE */
+
+function deleteFarmer(index){
+
+let confirmDelete =
+confirm(
+"Delete this farmer?"
+);
+
+if(confirmDelete){
+
+farmers.splice(index,1);
+
+loadFarmers();
+}
+}
+
+/* SEARCH */
+
+function searchFarmers(){
+
+let input =
+document.getElementById(
+"searchInput"
+).value.toLowerCase();
+
+let rows =
+document.querySelectorAll(
+"#farmerTable tr"
+);
+
+rows.forEach(row=>{
+
+let farmer =
+row.innerText.toLowerCase();
+
+if(farmer.includes(input)){
+
+row.style.display = "";
+}
+
+else{
+
+row.style.display = "none";
+}
+});
+}
+
+/* NOTIFICATIONS */
+
+function showNotifications(){
+
+alert(
+"6 Farmer Requests\n24 New Orders\n8 Pending Deliveries"
+);
+}
+
+/* LOGOUT */
+
+function logoutUser(){
+
+    let confirmLogout =
+    confirm(
+    "Are you sure you want to logout?"
+    );
+
+    if(confirmLogout){
+
+        window.location.href =
+        "/logout";
+    }
+}
+/* LOAD */
+
+loadFarmers();
+
+</script>
+
+</body>
+
+</html>

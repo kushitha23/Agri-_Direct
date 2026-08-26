@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Order Success | Agri-Direct</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f4f7fb;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+.success-container{
+background:white;
+width:100%;
+max-width:750px;
+padding:50px;
+border-radius:30px;
+text-align:center;
+box-shadow:0 8px 24px rgba(0,0,0,0.08);
+}
+
+.success-icon{
+width:120px;
+height:120px;
+background:#22c55e;
+color:white;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+margin:auto;
+font-size:55px;
+margin-bottom:30px;
+animation:pop 0.6s ease;
+}
+
+@keyframes pop{
+
+0%{
+transform:scale(0);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+h1{
+font-size:42px;
+color:#0f172a;
+margin-bottom:16px;
+}
+
+.message{
+color:#64748b;
+font-size:18px;
+line-height:32px;
+margin-bottom:30px;
+}
+
+.order-box{
+background:#f8fafc;
+padding:30px;
+border-radius:24px;
+text-align:left;
+margin-top:30px;
+margin-bottom:35px;
+}
+
+.order-box h2{
+color:#16a34a;
+margin-bottom:25px;
+font-size:28px;
+text-align:center;
+}
+
+.detail-row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:18px;
+font-size:17px;
+border-bottom:1px solid #e2e8f0;
+padding-bottom:12px;
+gap:20px;
+}
+
+.detail-row strong{
+color:#0f172a;
+}
+
+.detail-row span{
+color:#475569;
+text-align:right;
+}
+
+.button-group{
+display:flex;
+justify-content:center;
+gap:18px;
+flex-wrap:wrap;
+margin-top:20px;
+}
+
+.btn{
+padding:16px 28px;
+border:none;
+border-radius:16px;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+transition:0.3s;
+}
+
+.shop-btn{
+background:#22c55e;
+color:white;
+}
+
+.shop-btn:hover{
+background:#16a34a;
+}
+
+.track-btn{
+background:#0f172a;
+color:white;
+}
+
+.track-btn:hover{
+background:#1e293b;
+}
+
+.history-btn{
+background:#2563eb;
+color:white;
+}
+
+.history-btn:hover{
+background:#1d4ed8;
+}
+
+a{
+text-decoration:none;
+}
+
+@media(max-width:600px){
+
+.success-container{
+padding:35px 25px;
+}
+
+h1{
+font-size:32px;
+}
+
+.detail-row{
+flex-direction:column;
+align-items:flex-start;
+gap:8px;
+}
+
+.detail-row span{
+text-align:left;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="success-container">
+
+<!-- SUCCESS ICON -->
+
+<div class="success-icon">
+
+<i class="fa-solid fa-check"></i>
+
+</div>
+
+<!-- TITLE -->
+
+<h1>Order Placed Successfully 🎉</h1>
+
+<p class="message">
+
+Thank you for shopping with Agri-Direct.<br>
+
+Your fresh farm products are being prepared.
+
+</p>
+
+<!-- ORDER DETAILS -->
+
+<div class="order-box">
+
+<h2>Order Details</h2>
+
+<div class="detail-row">
+
+<strong>Customer Name</strong>
+
+<span id="customerName">
+
+Loading...
+
+</span>
+
+</div>
+
+<div class="detail-row">
+
+<strong>Phone Number</strong>
+
+<span id="customerPhone">
+
+Loading...
+
+</span>
+
+</div>
+
+<div class="detail-row">
+
+<strong>Delivery Address</strong>
+
+<span id="customerAddress">
+
+Loading...
+
+</span>
+
+</div>
+
+<div class="detail-row">
+
+<strong>Payment Method</strong>
+
+<span id="customerPayment">
+
+Loading...
+
+</span>
+
+</div>
+
+<div class="detail-row">
+
+<strong>Estimated Delivery</strong>
+
+<span>
+
+Tomorrow, 10:00 AM - 2:00 PM
+
+</span>
+
+</div>
+
+</div>
+
+<!-- BUTTONS -->
+
+<div class="button-group">
+
+<a href="products.html">
+
+<button class="btn shop-btn">
+
+Continue Shopping
+
+</button>
+
+</a>
+
+<a href="order-tracking.html">
+
+<button class="btn track-btn">
+
+Track Order
+
+</button>
+
+</a>
+
+<a href="order-history.html">
+
+<button class="btn history-btn">
+
+Order History
+
+</button>
+
+</a>
+
+</div>
+
+</div>
+
+<script>
+
+// GET CUSTOMER DATA
+
+let customer =
+JSON.parse(localStorage.getItem("customer"));
+
+// CHECK DATA EXISTS
+
+if(customer){
+
+document.getElementById("customerName")
+.innerText = customer.name;
+
+document.getElementById("customerPhone")
+.innerText = customer.phone;
+
+document.getElementById("customerAddress")
+.innerText = customer.address;
+
+document.getElementById("customerPayment")
+.innerText = customer.payment;
+
+}else{
+
+document.getElementById("customerName")
+.innerText = "No Data";
+
+document.getElementById("customerPhone")
+.innerText = "No Data";
+
+document.getElementById("customerAddress")
+.innerText = "No Data";
+
+document.getElementById("customerPayment")
+.innerText = "No Data";
+
+}
+
+</script>
+
+</body>
+
+</html>

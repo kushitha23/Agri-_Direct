@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+    <title>Verify OTP | Agri-Direct</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Sora',sans-serif;
+        }
+
+        body{
+
+            background:#f5f7fb;
+
+            min-height:100vh;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            padding:40px 20px;
+        }
+
+        .otp-container{
+
+            width:100%;
+
+            max-width:1100px;
+
+            display:grid;
+
+            grid-template-columns:1fr 1fr;
+
+            background:white;
+
+            border-radius:30px;
+
+            overflow:hidden;
+
+            box-shadow:0 8px 30px rgba(0,0,0,0.08);
+
+        }
+
+        .otp-left{
+
+            background:
+
+            linear-gradient(
+                rgba(5,168,52,0.88),
+                rgba(5,168,52,0.88)
+            ),
+
+            url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854');
+
+            background-size:cover;
+
+            background-position:center;
+
+            color:white;
+
+            padding:70px 50px;
+
+            display:flex;
+
+            flex-direction:column;
+
+            justify-content:center;
+
+        }
+
+        .otp-left h1{
+
+            font-size:52px;
+
+            font-weight:800;
+
+            margin-bottom:20px;
+
+        }
+
+        .otp-left p{
+
+            font-size:18px;
+
+            line-height:32px;
+
+            margin-bottom:35px;
+
+        }
+
+        .feature{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:14px;
+
+            margin-bottom:20px;
+
+            font-size:18px;
+
+        }
+
+        .otp-right{
+
+            padding:70px 60px;
+
+            display:flex;
+
+            flex-direction:column;
+
+            justify-content:center;
+
+        }
+
+        .otp-right h2{
+
+            font-size:42px;
+
+            margin-bottom:10px;
+
+        }
+
+        .otp-right p{
+
+            color:#64748b;
+
+            margin-bottom:35px;
+
+            font-size:16px;
+
+        }
+
+        .message{
+
+            background:#ffe5e5;
+
+            color:#d90429;
+
+            padding:14px;
+
+            border-radius:12px;
+
+            margin-bottom:20px;
+
+            font-weight:600;
+
+            text-align:center;
+
+        }
+
+        .input-group{
+
+            margin-bottom:25px;
+
+        }
+
+        .input-group input{
+
+            width:100%;
+
+            padding:18px;
+
+            border:1px solid #dbe4ee;
+
+            border-radius:14px;
+
+            outline:none;
+
+            font-size:18px;
+
+            text-align:center;
+
+            letter-spacing:8px;
+
+        }
+
+        .input-group input:focus{
+
+            border-color:#05a834;
+
+        }
+
+        .otp-btn{
+
+            width:100%;
+
+            padding:18px;
+
+            border:none;
+
+            border-radius:14px;
+
+            background:#05a834;
+
+            color:white;
+
+            font-size:18px;
+
+            font-weight:700;
+
+            cursor:pointer;
+
+            transition:0.3s;
+
+        }
+
+        .otp-btn:hover{
+
+            background:#04842a;
+
+        }
+
+        .note{
+
+            text-align:center;
+
+            color:#64748b;
+
+            margin-top:20px;
+
+            font-size:14px;
+
+        }
+
+        @media(max-width:900px){
+
+            .otp-container{
+
+                grid-template-columns:1fr;
+
+            }
+
+            .otp-left{
+
+                padding:50px 30px;
+
+            }
+
+            .otp-right{
+
+                padding:50px 30px;
+
+            }
+
+            .otp-left h1{
+
+                font-size:40px;
+
+            }
+
+            .otp-right h2{
+
+                font-size:34px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="otp-container">
+
+    <!-- LEFT -->
+
+    <div class="otp-left">
+
+        <h1>Verify OTP</h1>
+
+        <p>
+
+            Secure your account with one-time password verification before accessing your dashboard.
+
+        </p>
+
+        <div class="feature">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            Secure Login
+
+        </div>
+
+        <div class="feature">
+
+            <i class="fa-solid fa-mobile-screen"></i>
+
+            OTP Authentication
+
+        </div>
+
+        <div class="feature">
+
+            <i class="fa-solid fa-user-check"></i>
+
+            Verified Access
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <div class="otp-right">
+
+        <h2>Enter OTP</h2>
+
+        <p>
+
+            Enter the 6-digit OTP generated during login.
+
+        </p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category,message in messages %}
+
+        <div class="message">
+
+            {{ message }}
+
+        </div>
+
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+
+            <div class="input-group">
+
+                <input
+                type="text"
+                name="otp"
+                maxlength="6"
+                placeholder="------"
+                required>
+
+            </div>
+
+            <button
+            type="submit"
+            class="otp-btn">
+
+                Verify OTP
+
+            </button>
+
+        </form>
+
+        <div class="note">
+
+            Demo Mode: Check Flask terminal for OTP.
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

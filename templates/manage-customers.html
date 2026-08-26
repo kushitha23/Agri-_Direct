@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Manage Customers</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f3f7ff;
+    padding:30px 7%;
+}
+
+a{
+    text-decoration:none;
+}
+
+/* TOPBAR */
+
+.topbar{
+
+    background:white;
+    padding:20px 30px;
+    border-radius:20px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:30px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.05);
+}
+
+.topbar h1{
+    color:#0f172a;
+}
+
+.back-btn{
+
+    border:none;
+    padding:12px 22px;
+
+    border-radius:12px;
+
+    background:#22c55e;
+
+    color:white;
+
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+/* STATS */
+
+.stats{
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+    margin-bottom:30px;
+}
+
+.stat-card{
+
+    background:white;
+    padding:25px;
+
+    border-radius:20px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.05);
+}
+
+.stat-card i{
+
+    font-size:30px;
+
+    color:#22c55e;
+
+    margin-bottom:15px;
+}
+
+.stat-card h2{
+
+    font-size:28px;
+
+    margin-bottom:8px;
+
+    color:#0f172a;
+}
+
+.stat-card p{
+    color:#64748b;
+}
+
+/* CUSTOMER BOX */
+
+.customer-box{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.05);
+}
+
+.customer-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.customer-header input{
+
+    padding:12px 16px;
+
+    border:none;
+
+    background:#f1f5f9;
+
+    border-radius:12px;
+
+    outline:none;
+
+    width:250px;
+}
+
+/* TABLE */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+th{
+
+    background:#f8fafc;
+
+    padding:16px;
+
+    text-align:left;
+}
+
+td{
+
+    padding:16px;
+
+    border-bottom:1px solid #e2e8f0;
+}
+
+/* STATUS */
+
+.status{
+
+    padding:8px 14px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+    font-weight:600;
+}
+
+.active{
+
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.blocked{
+
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+.vip{
+
+    background:#ede9fe;
+    color:#7c3aed;
+}
+
+/* BUTTONS */
+
+.view-btn,
+.block-btn,
+.delete-btn{
+
+    border:none;
+
+    padding:10px 14px;
+
+    border-radius:10px;
+
+    color:white;
+
+    cursor:pointer;
+
+    margin:3px;
+}
+
+.view-btn{
+    background:#3b82f6;
+}
+
+.block-btn{
+    background:#f59e0b;
+}
+
+.delete-btn{
+    background:#ef4444;
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:700px){
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .topbar{
+
+        flex-direction:column;
+        align-items:flex-start;
+
+        gap:20px;
+    }
+
+    .customer-header{
+
+        flex-direction:column;
+        align-items:flex-start;
+
+        gap:15px;
+    }
+
+    table{
+        display:block;
+        overflow-x:auto;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- TOPBAR -->
+
+<div class="topbar">
+
+    <h1>👥 Manage Customers</h1>
+
+    <a href="admin-dashboard.html">
+
+        <button class="back-btn">
+
+            Back Dashboard
+
+        </button>
+
+    </a>
+
+</div>
+
+<!-- STATS -->
+
+<div class="stats">
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-users"></i>
+
+        <h2 id="totalCustomers">0</h2>
+
+        <p>Total Customers</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-user-check"></i>
+
+        <h2 id="activeCustomers">0</h2>
+
+        <p>Active Customers</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-user-slash"></i>
+
+        <h2 id="blockedCustomers">0</h2>
+
+        <p>Blocked Customers</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-indian-rupee-sign"></i>
+
+        <h2>₹82K</h2>
+
+        <p>Total Revenue</p>
+
+    </div>
+
+</div>
+
+<!-- CUSTOMER TABLE -->
+
+<div class="customer-box">
+
+    <div class="customer-header">
+
+        <h2>Customer List</h2>
+
+        <input type="text"
+        id="searchInput"
+        placeholder="Search customers..."
+        onkeyup="searchCustomers()">
+
+    </div>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Orders</th>
+                <th>Spent</th>
+                <th>Status</th>
+                <th>Actions</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="customerTable">
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<!-- SCRIPT -->
+
+<script>
+
+let customers = [
+
+{
+    name:"Kushitha",
+    email:"kushitha@gmail.com",
+    phone:"+91 9876543210",
+    orders:12,
+    spent:"₹8,500",
+    status:"Active"
+},
+
+{
+    name:"Rahul",
+    email:"rahul@gmail.com",
+    phone:"+91 9876543211",
+    orders:5,
+    spent:"₹3,200",
+    status:"Blocked"
+},
+
+{
+    name:"Anjali",
+    email:"anjali@gmail.com",
+    phone:"+91 9876543212",
+    orders:20,
+    spent:"₹15,000",
+    status:"VIP"
+}
+
+];
+
+let table =
+document.getElementById(
+"customerTable"
+);
+
+function loadCustomers(){
+
+    table.innerHTML = "";
+
+    let active = 0;
+    let blocked = 0;
+
+    customers.forEach((customer,index)=>{
+
+        let statusClass =
+        customer.status.toLowerCase();
+
+        if(customer.status === "Active"){
+            active++;
+        }
+
+        if(customer.status === "Blocked"){
+            blocked++;
+        }
+
+        table.innerHTML += `
+
+        <tr>
+
+            <td>${customer.name}</td>
+
+            <td>${customer.email}</td>
+
+            <td>${customer.phone}</td>
+
+            <td>${customer.orders}</td>
+
+            <td>${customer.spent}</td>
+
+            <td>
+
+                <span class="status ${statusClass}">
+
+                    ${customer.status}
+
+                </span>
+
+            </td>
+
+            <td>
+
+                <button class="view-btn"
+                onclick="viewCustomer(${index})">
+
+                    View
+
+                </button>
+
+                <button class="block-btn"
+                onclick="blockCustomer(${index})">
+
+                    Block
+
+                </button>
+
+                <button class="delete-btn"
+                onclick="deleteCustomer(${index})">
+
+                    Delete
+
+                </button>
+
+            </td>
+
+        </tr>
+
+        `;
+    });
+
+    document.getElementById(
+    "totalCustomers"
+    ).innerText = customers.length;
+
+    document.getElementById(
+    "activeCustomers"
+    ).innerText = active;
+
+    document.getElementById(
+    "blockedCustomers"
+    ).innerText = blocked;
+}
+
+function viewCustomer(index){
+
+    alert(
+
+    "👤 Customer: " +
+    customers[index].name +
+
+    "\n📧 Email: " +
+    customers[index].email +
+
+    "\n📱 Phone: " +
+    customers[index].phone +
+
+    "\n🛒 Orders: " +
+    customers[index].orders
+    );
+}
+
+function blockCustomer(index){
+
+    customers[index].status =
+    "Blocked";
+
+    loadCustomers();
+}
+
+function deleteCustomer(index){
+
+    let confirmDelete =
+    confirm(
+    "Delete this customer?"
+    );
+
+    if(confirmDelete){
+
+        customers.splice(index,1);
+
+        loadCustomers();
+    }
+}
+
+function searchCustomers(){
+
+    let input =
+    document.getElementById(
+    "searchInput"
+    ).value.toLowerCase();
+
+    let rows =
+    document.querySelectorAll(
+    "#customerTable tr"
+    );
+
+    rows.forEach(row=>{
+
+        let customer =
+        row.children[0]
+        .innerText
+        .toLowerCase();
+
+        if(customer.includes(input)){
+
+            row.style.display = "";
+        }
+
+        else{
+
+            row.style.display = "none";
+        }
+    });
+}
+
+loadCustomers();
+
+</script>
+
+</body>
+
+</html>

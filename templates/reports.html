@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Reports & Analytics</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Outfit',sans-serif;
+}
+
+body{
+
+    background:#f0fdf4;
+
+    padding:35px 7%;
+
+    color:#052e16;
+}
+
+/* TOPBAR */
+
+.topbar{
+
+    background:white;
+
+    padding:24px 30px;
+
+    border-radius:28px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:35px;
+
+    border:1px solid #bbf7d0;
+
+    box-shadow:
+    0 10px 30px rgba(34,197,94,0.08);
+}
+
+.topbar h1{
+
+    font-size:34px;
+
+    font-weight:700;
+}
+
+.top-actions{
+
+    display:flex;
+    gap:15px;
+}
+
+.top-btn{
+
+    border:none;
+
+    padding:13px 22px;
+
+    border-radius:14px;
+
+    background:#16a34a;
+
+    color:white;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.top-btn:hover{
+
+    transform:translateY(-3px);
+
+    background:#15803d;
+}
+
+/* FILTERS */
+
+.filters{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-bottom:35px;
+
+    flex-wrap:wrap;
+}
+
+.filter-btn{
+
+    border:none;
+
+    padding:12px 22px;
+
+    border-radius:14px;
+
+    background:white;
+
+    border:1px solid #bbf7d0;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    color:#166534;
+}
+
+.filter-btn:hover{
+
+    background:#16a34a;
+
+    color:white;
+}
+
+/* STATS */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:22px;
+
+    margin-bottom:35px;
+}
+
+.stat-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:28px;
+
+    border:1px solid #bbf7d0;
+
+    box-shadow:
+    0 8px 24px rgba(34,197,94,0.06);
+
+    transition:0.3s;
+}
+
+.stat-card:hover{
+
+    transform:translateY(-6px);
+}
+
+.stat-card i{
+
+    font-size:32px;
+
+    color:#16a34a;
+
+    margin-bottom:18px;
+}
+
+.stat-card h2{
+
+    font-size:34px;
+
+    margin-bottom:8px;
+}
+
+.stat-card p{
+
+    color:#166534;
+}
+
+/* GRID */
+
+.report-grid{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:25px;
+
+    margin-bottom:35px;
+}
+
+/* TABLE BOX */
+
+.table-box,
+.analytics-box{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:28px;
+
+    border:1px solid #bbf7d0;
+
+    box-shadow:
+    0 8px 24px rgba(34,197,94,0.06);
+}
+
+.table-box h2,
+.analytics-box h2{
+
+    margin-bottom:25px;
+
+    font-size:28px;
+}
+
+/* TABLE */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+th{
+
+    background:#f0fdf4;
+
+    padding:16px;
+
+    text-align:left;
+
+    font-size:14px;
+}
+
+td{
+
+    padding:16px;
+
+    border-bottom:1px solid #dcfce7;
+
+    font-size:14px;
+}
+
+/* BADGES */
+
+.badge{
+
+    padding:8px 14px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:700;
+}
+
+.green{
+
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.light{
+
+    background:#bbf7d0;
+    color:#166534;
+}
+
+.dark{
+
+    background:#166534;
+    color:white;
+}
+
+/* ANALYTICS */
+
+.analytics-item{
+
+    margin-bottom:25px;
+}
+
+.analytics-item h4{
+
+    margin-bottom:12px;
+
+    font-size:15px;
+}
+
+.progress{
+
+    width:100%;
+
+    height:12px;
+
+    background:#dcfce7;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.progress-bar{
+
+    height:100%;
+
+    border-radius:20px;
+
+    background:#16a34a;
+}
+
+.revenue{
+    width:85%;
+}
+
+.orders{
+    width:72%;
+}
+
+.customers{
+    width:65%;
+}
+
+.farmers{
+    width:90%;
+}
+
+/* DOWNLOAD */
+
+.downloads{
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+}
+
+.download-btn{
+
+    border:none;
+
+    padding:13px 22px;
+
+    border-radius:14px;
+
+    color:white;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.download-btn:hover{
+
+    transform:translateY(-3px);
+}
+
+.pdf{
+    background:#16a34a;
+}
+
+.excel{
+    background:#15803d;
+}
+
+.print{
+    background:#166534;
+}
+
+/* MOBILE */
+
+@media(max-width:1200px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .report-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:700px){
+
+    body{
+        padding:20px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .topbar{
+
+        flex-direction:column;
+        align-items:flex-start;
+
+        gap:20px;
+    }
+
+    table{
+        display:block;
+        overflow-x:auto;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- TOPBAR -->
+
+<div class="topbar">
+
+    <h1>Reports & Analytics</h1>
+
+    <div class="top-actions">
+
+        <button class="top-btn"
+        onclick="window.location.href='admin-dashboard.html'">
+
+            Back Dashboard
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- FILTERS -->
+
+<div class="filters">
+
+    <button class="filter-btn"
+    onclick="loadToday()">
+
+        Today
+
+    </button>
+
+    <button class="filter-btn"
+    onclick="loadWeek()">
+
+        This Week
+
+    </button>
+
+    <button class="filter-btn"
+    onclick="loadMonth()">
+
+        This Month
+
+    </button>
+
+    <button class="filter-btn"
+    onclick="loadYear()">
+
+        This Year
+
+    </button>
+
+</div>
+
+<!-- STATS -->
+
+<div class="stats">
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-wallet"></i>
+<h2>₹{{ total_revenue }}</h2>
+
+        <p>Total Revenue</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-cart-shopping"></i>
+
+        <h2>{{ total_orders }}</h2>
+
+        <p>Total Orders</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-truck"></i>
+
+        <h2>{{ delivered_orders }}</h2>
+
+        <p>Delivered Orders</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-user-group"></i>
+
+        <h2>{{ total_farmers }}</h2>
+
+        <p>Top Farmers</p>
+
+    </div>
+
+</div>
+
+<!-- GRID -->
+
+<div class="report-grid">
+
+    <!-- TABLE -->
+
+    <div class="table-box">
+
+        <h2>Top Selling Products</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Orders</th>
+                    <th>Revenue</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tbody>
+
+{% for product in top_products %}
+
+<tr>
+
+    <td>{{ product.product_name }}</td>
+
+    <td>Agriculture</td>
+
+    <td>{{ product.orders_count }}</td>
+
+    <td>₹{{ product.revenue }}</td>
+
+    <td>
+
+        <span class="badge green">
+
+            Top Seller
+
+        </span>
+
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+            
+        </table>
+
+    </div>
+
+    <!-- ANALYTICS -->
+
+    <div class="analytics-box">
+
+        <h2>Platform Analytics</h2>
+
+        <div class="analytics-item">
+
+            <h4>Revenue Growth</h4>
+
+            <div class="progress">
+
+                <div class="progress-bar revenue">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="analytics-item">
+
+            <h4>Order Completion</h4>
+
+            <div class="progress">
+
+                <div class="progress-bar orders">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="analytics-item">
+
+            <h4>Customer Activity</h4>
+
+            <div class="progress">
+
+                <div class="progress-bar customers">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="analytics-item">
+
+            <h4>Farmer Performance</h4>
+
+            <div class="progress">
+
+                <div class="progress-bar farmers">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- DOWNLOAD -->
+
+<div class="downloads">
+
+    <button class="download-btn pdf"
+    onclick="downloadPDF()">
+
+        Download PDF
+
+    </button>
+
+    <button class="download-btn excel"
+    onclick="downloadExcel()">
+
+        Download Excel
+
+    </button>
+
+    <button class="download-btn print"
+    onclick="printReport()">
+
+        Print Report
+
+    </button>
+
+</div>
+
+<!-- SCRIPT -->
+
+<script>
+
+const reportStats = {
+
+    today:{
+        revenue:"₹12,000",
+        orders:"42",
+        delivered:"30",
+        farmers:"12"
+    },
+
+    week:{
+        revenue:"₹85,000",
+        orders:"240",
+        delivered:"190",
+        farmers:"45"
+    },
+
+    month:{
+        revenue:"₹4.8L",
+        orders:"1,240",
+        delivered:"1,020",
+        farmers:"150"
+    },
+
+    year:{
+        revenue:"₹24L",
+        orders:"12,500",
+        delivered:"10,800",
+        farmers:"420"
+    }
+};
+
+function updateDashboard(data){
+
+    document.getElementById(
+    "revenueValue"
+    ).innerText =
+    data.revenue;
+
+    document.getElementById(
+    "ordersValue"
+    ).innerText =
+    data.orders;
+
+    document.getElementById(
+    "deliveredValue"
+    ).innerText =
+    data.delivered;
+
+    document.getElementById(
+    "farmersValue"
+    ).innerText =
+    data.farmers;
+}
+
+function loadToday(){
+
+    updateDashboard(
+    reportStats.today
+    );
+}
+
+function loadWeek(){
+
+    updateDashboard(
+    reportStats.week
+    );
+}
+
+function loadMonth(){
+
+    updateDashboard(
+    reportStats.month
+    );
+}
+
+function loadYear(){
+
+    updateDashboard(
+    reportStats.year
+    );
+}
+
+function downloadPDF(){
+
+    alert(
+    "PDF Report Downloaded Successfully"
+    );
+}
+
+function downloadExcel(){
+
+    alert(
+    "Excel Report Downloaded Successfully"
+    );
+}
+
+function printReport(){
+
+    window.print();
+}
+
+loadMonth();
+
+</script>
+
+</body>
+
+</html>

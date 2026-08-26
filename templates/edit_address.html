@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Edit Address</title>
+
+<style>
+
+body{
+
+    font-family:sans-serif;
+
+    background:#f5f5f5;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:100vh;
+
+}
+
+.card{
+
+    background:white;
+
+    width:450px;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+
+}
+
+input{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-bottom:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+}
+
+button{
+
+    width:100%;
+
+    padding:14px;
+
+    background:#22c55e;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>Edit Address</h2>
+
+<form method="POST">
+
+<input
+type="text"
+name="address_name"
+value="{{ address.address_name }}"
+required>
+
+<input
+type="text"
+name="address_line1"
+value="{{ address.address_line1 }}"
+required>
+
+<input
+type="text"
+name="address_line2"
+value="{{ address.address_line2 }}">
+
+<input
+type="text"
+name="city"
+value="{{ address.city }}"
+required>
+
+<input
+type="text"
+name="state"
+value="{{ address.state }}"
+required>
+
+<input
+type="text"
+name="pincode"
+value="{{ address.pincode }}"
+required>
+
+<button type="submit">
+
+Save Changes
+
+</button>
+
+</form>
+
+</div>
+
+</body>
+
+</html>

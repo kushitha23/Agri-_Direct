@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Agri-Direct</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Sora',sans-serif;
+        }
+
+        body{
+            background:#f5f7fb;
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:40px 20px;
+        }
+
+        .login-container{
+            width:100%;
+            max-width:1100px;
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            background:white;
+            border-radius:30px;
+            overflow:hidden;
+            box-shadow:0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .login-left{
+            background:linear-gradient(rgba(5,168,52,0.88),
+            rgba(5,168,52,0.88)),
+            url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854');
+
+            background-size:cover;
+            background-position:center;
+            color:white;
+            padding:70px 50px;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+        }
+
+        .login-left h1{
+            font-size:52px;
+            font-weight:800;
+            margin-bottom:20px;
+        }
+
+        .login-left p{
+            font-size:17px;
+            line-height:30px;
+            margin-bottom:30px;
+        }
+
+        .feature{
+            display:flex;
+            align-items:center;
+            gap:14px;
+            margin-bottom:18px;
+            font-size:16px;
+        }
+
+        .login-right{
+            padding:60px 50px;
+        }
+
+        .form-title{
+            margin-bottom:30px;
+        }
+
+        .form-title h2{
+            font-size:38px;
+            margin-bottom:10px;
+        }
+
+        .form-title p{
+            color:#64748b;
+            font-size:15px;
+        }
+
+        .input-group{
+            margin-bottom:20px;
+            position:relative;
+        }
+
+        .input-group label{
+            display:block;
+            margin-bottom:8px;
+            font-size:14px;
+            font-weight:600;
+        }
+
+        .input-group input{
+            width:100%;
+            padding:16px;
+            border:1px solid #dbe4ee;
+            border-radius:14px;
+            outline:none;
+            font-size:15px;
+        }
+
+        .input-group input:focus{
+            border-color:#05a834;
+        }
+
+        .password-toggle{
+            position:absolute;
+            right:18px;
+            top:48px;
+            cursor:pointer;
+            color:#64748b;
+        }
+
+        .login-btn{
+            width:100%;
+            padding:16px;
+            border:none;
+            border-radius:14px;
+            background:#05a834;
+            color:white;
+            font-size:16px;
+            font-weight:700;
+            cursor:pointer;
+        }
+
+        .login-btn:hover{
+            background:#04842a;
+        }
+
+        .message{
+            background:#ffe5e5;
+            color:#d90429;
+            padding:12px;
+            border-radius:10px;
+            margin-bottom:15px;
+            font-weight:600;
+        }
+
+        .register-link{
+            text-align:center;
+            margin-top:20px;
+        }
+
+        .register-link a{
+            color:#05a834;
+            text-decoration:none;
+            font-weight:700;
+        }
+
+        @media(max-width:900px){
+            .login-container{
+                grid-template-columns:1fr;
+            }
+
+            .login-right{
+                padding:40px 30px;
+            }
+
+            .login-left{
+                padding:50px 30px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <div class="login-left">
+
+        <h1>Welcome Back</h1>
+
+        <p>
+            Login to continue buying and selling
+            fresh farm products across India.
+        </p>
+
+        <div class="feature">
+            <i class="fa-solid fa-leaf"></i>
+            Fresh Products
+        </div>
+
+        <div class="feature">
+            <i class="fa-solid fa-hand-holding-dollar"></i>
+            Fair Pricing
+        </div>
+
+        <div class="feature">
+            <i class="fa-solid fa-truck"></i>
+            Fast Delivery
+        </div>
+
+        <div class="feature">
+            <i class="fa-solid fa-shield-halved"></i>
+            Secure Platform
+        </div>
+
+    </div>
+
+    <div class="login-right">
+
+        <div class="form-title">
+
+            <h2>Login Account</h2>
+
+            <p>
+                Login to access your dashboard.
+            </p>
+
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+
+        <div class="message">
+            {{ message }}
+        </div>
+
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="/login.html" autocomplete="off">
+
+            <div class="input-group">
+
+                <input
+type="tel"
+name="phone"
+placeholder="Enter Phone Number"
+required>
+
+
+            </div>
+
+            <div class="input-group">
+                <input
+    type="password"
+    name="password"
+    autocomplete="new-password"
+    placeholder="Enter password"
+                required>
+
+                
+
+                <i class="fa-solid fa-eye password-toggle"
+                onclick="togglePassword()"></i>
+
+            </div>
+
+            <button type="submit"
+            class="login-btn">
+
+                Login Now
+
+            </button>
+
+        </form>
+
+        <div class="register-link">
+
+            Don't have an account?
+
+            <a href="register.html">
+
+                Register
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function togglePassword(){
+
+    let password =
+    document.getElementById("password");
+
+    if(password.type === "password"){
+
+        password.type = "text";
+
+    } else {
+
+        password.type = "password";
+    }
+}
+
+</script>
+
+</body>
+</html>

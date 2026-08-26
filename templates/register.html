@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+    <title>Register | Agri-Direct</title>
+
+    <!-- GOOGLE FONT -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Sora',sans-serif;
+        }
+
+        body{
+
+            background:#f5f7fb;
+
+            min-height:100vh;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            padding:40px 20px;
+        }
+
+        .register-container{
+
+            width:100%;
+
+            max-width:1100px;
+
+            display:grid;
+
+            grid-template-columns:1fr 1fr;
+
+            background:white;
+
+            border-radius:30px;
+
+            overflow:hidden;
+
+            box-shadow:0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        /* LEFT SIDE */
+
+        .register-left{
+
+            background:linear-gradient(rgba(5,168,52,0.88),
+            rgba(5,168,52,0.88)),
+
+            url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854');
+
+            background-size:cover;
+
+            background-position:center;
+
+            color:white;
+
+            padding:70px 50px;
+
+            display:flex;
+
+            flex-direction:column;
+
+            justify-content:center;
+        }
+
+        .register-left h1{
+
+            font-size:52px;
+
+            font-weight:800;
+
+            margin-bottom:20px;
+        }
+
+        .register-left p{
+
+            font-size:17px;
+
+            line-height:30px;
+
+            margin-bottom:30px;
+        }
+
+        .feature{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:14px;
+
+            margin-bottom:18px;
+
+            font-size:16px;
+        }
+
+        .feature i{
+
+            font-size:20px;
+        }
+
+        /* RIGHT SIDE */
+
+        .register-right{
+
+            padding:60px 50px;
+        }
+
+        .form-title{
+
+            margin-bottom:30px;
+        }
+
+        .form-title h2{
+
+            font-size:38px;
+
+            margin-bottom:10px;
+        }
+
+        .form-title p{
+
+            color:#64748b;
+
+            font-size:15px;
+        }
+
+        .input-group{
+
+            margin-bottom:20px;
+
+            position:relative;
+        }
+
+        .input-group label{
+
+            display:block;
+
+            margin-bottom:8px;
+
+            font-size:14px;
+
+            font-weight:600;
+        }
+
+        .input-group input,
+        .input-group select{
+
+            width:100%;
+
+            padding:16px;
+
+            border:1px solid #dbe4ee;
+
+            border-radius:14px;
+
+            outline:none;
+
+            font-size:15px;
+
+            transition:0.3s;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus{
+
+            border-color:#05a834;
+        }
+
+        .password-toggle{
+
+            position:absolute;
+
+            right:18px;
+
+            top:48px;
+
+            cursor:pointer;
+
+            color:#64748b;
+        }
+
+        .register-btn{
+
+            width:100%;
+
+            padding:16px;
+
+            border:none;
+
+            border-radius:14px;
+
+            background:#05a834;
+
+            color:white;
+
+            font-size:16px;
+
+            font-weight:700;
+
+            cursor:pointer;
+
+            transition:0.3s;
+        }
+
+        .register-btn:hover{
+
+            background:#04842a;
+        }
+
+        .message{
+
+            margin-bottom:18px;
+
+            padding:14px;
+
+            border-radius:10px;
+
+            font-size:14px;
+
+            font-weight:600;
+        }
+
+        .error{
+
+            background:#ffe5e5;
+
+            color:#d90429;
+        }
+
+        .success{
+
+            background:#e3ffe8;
+
+            color:#04842a;
+        }
+
+        .login-link{
+
+            text-align:center;
+
+            margin-top:22px;
+
+            font-size:14px;
+
+            color:#64748b;
+        }
+
+        .login-link a{
+
+            color:#05a834;
+
+            font-weight:700;
+
+            text-decoration:none;
+        }
+
+        .home-link{
+
+            text-align:center;
+
+            margin-top:14px;
+        }
+
+        .home-link a{
+
+            color:#334155;
+
+            text-decoration:none;
+
+            font-size:14px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:900px){
+
+            .register-container{
+
+                grid-template-columns:1fr;
+            }
+
+            .register-left{
+
+                padding:50px 30px;
+            }
+
+            .register-left h1{
+
+                font-size:38px;
+            }
+
+            .register-right{
+
+                padding:40px 30px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="register-container">
+
+        <!-- LEFT -->
+
+        <div class="register-left">
+
+            <h1>Join Agri-Direct</h1>
+
+            <p>
+                Create your account and connect directly
+                with farmers and buyers across India.
+            </p>
+
+            <div class="feature">
+
+                <i class="fa-solid fa-leaf"></i>
+
+                Fresh Farm Products
+
+            </div>
+
+            <div class="feature">
+
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+
+                Fair Pricing System
+
+            </div>
+
+            <div class="feature">
+
+                <i class="fa-solid fa-truck"></i>
+
+                Fast Delivery
+
+            </div>
+
+            <div class="feature">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                Secure Transactions
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="register-right">
+
+            <div class="form-title">
+
+                <h2>Create Account</h2>
+
+                <p>
+                    Register to start buying or selling products.
+                </p>
+
+            </div>
+
+            <!-- FLASH MESSAGE -->
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+
+                        <div class="message {{ category }}">
+                            {{ message }}
+                        </div>
+
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="/register.html" autocomplete="off">
+
+                <!-- NAME -->
+
+                <div class="input-group">
+
+                    <label>Full Name</label>
+
+                    <input
+type="text"
+name="fullname"
+value="{{ request.form.get('fullname','') }}"
+placeholder="Enter your full name"
+required>
+
+                </div>
+
+                <!-- EMAIL -->
+
+                <div class="input-group">
+
+                    <label>Email Address</label>
+
+          <input
+type="email"
+name="email"
+value="{{ request.form.get('email','') }}"
+placeholder="Enter your email address"
+required>
+
+                </div>
+
+                <!-- PHONE -->
+
+                <div class="input-group">
+
+                    <label>Phone Number</label>
+
+                  <input
+type="tel"
+name="phone"
+value="{{ request.form.get('phone','') }}"
+pattern="[0-9]{10}"
+maxlength="10"
+placeholder="Enter phone number"
+required>
+
+                </div>
+
+                <!-- ROLE -->
+
+                <div class="input-group">
+
+                    <label>Select Role</label>
+
+                   <select name="role" required>
+
+    <option value="">Choose Role</option>
+
+    <option value="buyer"
+    {% if request.form.get('role') == 'buyer' %}
+    selected
+    {% endif %}>
+    Buyer
+    </option>
+
+    <option value="farmer"
+    {% if request.form.get('role') == 'farmer' %}
+    selected
+    {% endif %}>
+    Farmer
+    </option>
+
+</select>
+
+                </div>
+
+                <!-- PASSWORD -->
+
+               <!-- PASSWORD -->
+
+<div class="input-group">
+
+    <label>Password</label>
+
+    <input type="password"
+    id="password"
+    name="password"
+    minlength="6"
+    placeholder="Create password"
+    required>
+
+    <i class="fa-solid fa-eye password-toggle"
+    onclick="togglePassword()"></i>
+
+</div>
+
+<!-- CONFIRM PASSWORD -->
+
+<div class="input-group">
+
+    <label>Confirm Password</label>
+
+    <input type="password"
+    id="confirmPassword"
+    name="confirmPassword"
+    minlength="6"
+    placeholder="Confirm password"
+    required>
+
+</div><!-- BUTTON --> <button type="submit" class="register-btn"> Register Now </button> </form> <!-- LOGIN --> <div class="login-link"> Already have an account? <a href="login.html"> Login </a> </div>
+
+            <!-- HOME -->
+
+            
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function togglePassword(){
+
+            let password =
+            document.getElementById("password");
+
+            if(password.type === "password"){
+
+                password.type = "text";
+            }
+
+            else{
+
+                password.type = "password";
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

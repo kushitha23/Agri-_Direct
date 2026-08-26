@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Products | Agri-Direct</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f3f6fb;
+padding:30px;
+}
+
+.header{
+background:white;
+padding:25px 40px;
+border-radius:25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.header h1{
+font-size:48px;
+font-weight:700;
+}
+
+.back-btn{
+background:#22c55e;
+color:white;
+border:none;
+padding:15px 25px;
+border-radius:15px;
+cursor:pointer;
+font-size:18px;
+font-weight:600;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+margin-bottom:30px;
+}
+
+.card{
+background:white;
+padding:40px;
+border-radius:25px;
+text-align:center;
+}
+
+.card h2{
+font-size:55px;
+margin-bottom:10px;
+}
+
+.card p{
+font-size:22px;
+color:#444;
+}
+
+.products-section{
+background:white;
+padding:30px;
+border-radius:25px;
+}
+
+.search-box{
+width:350px;
+padding:15px;
+border:1px solid #ddd;
+border-radius:15px;
+margin-bottom:25px;
+font-size:16px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th{
+text-align:left;
+padding:20px;
+background:#f8fafc;
+font-size:20px;
+}
+
+td{
+padding:20px;
+border-bottom:1px solid #eee;
+font-size:18px;
+}
+
+.product-img{
+width:70px;
+height:70px;
+border-radius:10px;
+object-fit:cover;
+}
+
+.in-stock{
+color:#16a34a;
+font-weight:600;
+}
+
+.out-stock{
+color:red;
+font-weight:600;
+}
+
+.delete-btn{
+background:#ef4444;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:12px;
+cursor:pointer;
+}
+.edit-btn{
+
+    background:#3b82f6;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.delete-btn{
+
+    background:#ef4444;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:10px;
+    cursor:pointer;
+    margin-left:5px;
+}
+@media(max-width:900px){
+
+.stats{
+grid-template-columns:1fr;
+}
+
+table{
+display:block;
+overflow-x:auto;
+}
+
+.header h1{
+font-size:30px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+    <h1>📦 My Products</h1>
+
+    <a href="/farmer-dashboard.html">
+
+        <button class="back-btn">
+            Back Dashboard
+        </button>
+
+    </a>
+
+</div>
+
+<div class="stats">
+
+    <div class="card">
+        <h2>{{ total_products }}</h2>
+        <p>Total Products</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ out_of_stock }}</h2>
+        <p>Out Of Stock</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ available_products }}</h2>
+        <p>Available Products</p>
+    </div>
+
+</div>
+
+<div class="products-section">
+
+    <input
+        type="text"
+        id="searchInput"
+        class="search-box"
+        placeholder="Search Products..."
+        onkeyup="searchProducts()"
+    >
+
+    <table id="productsTable">
+
+        <thead>
+
+            <tr>
+
+                <th>Image</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Status</th>
+                <th>Image</th>
+
+               
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for product in products %}
+
+        <tr>
+
+          
+
+               <td>
+
+{% if "http" in product.image %}
+
+    <img
+        src="{{ product.image }}"
+        class="product-img"
+    >
+
+{% else %}
+
+    <img
+        src="data:image/png;base64,{{ product.image }}"
+        class="product-img"
+    >
+
+{% endif %}
+
+
+
+            </td>
+
+            <td>{{ product.name }}</td>
+
+            <td>{{ product.category }}</td>
+
+            <td>₹{{ product.price }}</td>
+
+            <td>{{ product.stock }}</td>
+<td>
+
+    <a href="/edit-product/{{ product.id }}">
+
+        <button class="edit-btn">
+            Edit
+        </button>
+
+    </a>
+
+    <a href="/delete-product/{{ product.id }}">
+
+        <button class="delete-btn">
+            Delete
+        </button>
+
+    </a>
+
+</td>
+            <td>
+
+                {% if product.stock > 0 %}
+
+                    <span class="in-stock">
+                        In Stock
+                    </span>
+
+                {% else %}
+
+                    <span class="out-stock">
+                        Out Of Stock
+                    </span>
+
+                {% endif %}
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<script>
+
+function searchProducts(){
+
+    let input =
+    document.getElementById("searchInput")
+    .value.toLowerCase();
+
+    let rows =
+    document.querySelectorAll(
+        "#productsTable tbody tr"
+    );
+
+    rows.forEach(row => {
+
+        let text =
+        row.innerText.toLowerCase();
+
+        row.style.display =
+        text.includes(input)
+        ? ""
+        : "none";
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
