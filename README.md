@@ -121,9 +121,7 @@ Deployment
 
 ---
 
-🚀 Live Application
 
- https://agri-direct-farmers-market.onrender.com
 
 
 ---
