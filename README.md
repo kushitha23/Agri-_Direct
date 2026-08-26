@@ -161,9 +161,9 @@ Focused on developing scalable web applications and creating efficient solutions
 
 🌱 Built By
 
-Kushitha Aragondaa & Aala Pradeep
+Kushitha Aragondaa
 
-Together, we developed Agri-Direct with the vision of empowering farmers through technology, promoting transparent trade, and creating a smarter agricultural marketplace.
+I developed Agri-Direct with the vision of empowering farmers through technology, promoting transparent trade, and creating a smarter agricultural marketplace.
 
 ---
 
